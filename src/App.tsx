@@ -71,31 +71,30 @@ function App() {
     }))
   }
 
+  const sliderConfigs = [
+    {
+      key: 'minutes' as const,
+      config: MINUTES,
+    },
+    { key: 'hours' as const, config: HOURS },
+    { key: 'days' as const, config: DAYS },
+  ]
+
   return (
     <MainContainer>
       <Title />
       <QRCode value={qrCodeValue} />
-      <Slider
-        props={MINUTES}
-        value={sliderValues.minutes}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChange(e, 'minutes')
-        }
-      />
-      <Slider
-        props={HOURS}
-        value={sliderValues.hours}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChange(e, 'hours')
-        }
-      />
-      <Slider
-        props={DAYS}
-        value={sliderValues.days}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChange(e, 'days')
-        }
-      />
+      {sliderConfigs.map((entry) => (
+        <div key={entry.key}>
+          <Slider
+            props={entry.config}
+            value={sliderValues[entry.key]}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e, entry.key)
+            }
+          />
+        </div>
+      ))}
       <SubmitButton onClick={handleClick} />
     </MainContainer>
   )
