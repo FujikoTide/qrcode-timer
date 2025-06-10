@@ -12,21 +12,28 @@ interface SliderValues {
   days: number
 }
 
-const MINUTES = {
+export interface SliderProps {
+  label: string
+  min: number
+  max: number
+  default: number
+}
+
+const MINUTES: SliderProps = {
   label: 'minutes',
   min: 0,
   max: 60,
   default: 0,
 } as const
 
-const HOURS = {
+const HOURS: SliderProps = {
   label: 'hours',
   min: 0,
   max: 60,
   default: 0,
 } as const
 
-const DAYS = {
+const DAYS: SliderProps = {
   label: 'days',
   min: 0,
   max: 365,

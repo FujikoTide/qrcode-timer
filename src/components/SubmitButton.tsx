@@ -1,4 +1,8 @@
-export default function SubmitButton({ onClick }) {
+interface SubmitButtonType {
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+}
+
+export default function SubmitButton({ onClick }: SubmitButtonType) {
   return (
     <div>
       <button

@@ -1,4 +1,12 @@
-export default function Slider({ value, props, onChange }) {
+import type { SliderProps } from '../App'
+
+interface SliderTypes {
+  value: number
+  props: SliderProps
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+}
+
+export default function Slider({ value, props, onChange }: SliderTypes) {
   return (
     <div className='relative mb-10 mt-2'>
       <label

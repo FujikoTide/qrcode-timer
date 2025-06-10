@@ -10,7 +10,7 @@ function bytesToBase64(bytes) {
   return btoa(binString)
 }
 
-export function stringToBase64(string) {
+export function stringToBase64(string: string) {
   return bytesToBase64(new TextEncoder().encode(string))
 }
 
