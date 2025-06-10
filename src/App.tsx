@@ -4,6 +4,7 @@ import QRCode from './components/QRCode'
 import Slider from './components/Slider'
 import SubmitButton from './components/SubmitButton'
 import Title from './components/Title'
+import QRCodeLink from './components/QRCodeLink'
 import { stringToBase64, base64ToString } from './base64'
 
 interface SliderValues {
@@ -51,12 +52,11 @@ function App() {
 
   function handleClick() {
     const sliderValuesString = JSON.stringify(sliderValues)
-    setQrCodeValue(sliderValuesString)
-
+    const sliderValuesBase64String = stringToBase64(sliderValuesString)
+    setQrCodeValue(sliderValuesBase64String)
     // TESTING !!!!!!!!
-    const testBase64 = stringToBase64(sliderValuesString)
-    const testString = base64ToString(testBase64)
-    console.log(testBase64, testString)
+    // const testString = base64ToString(sliderValuesBase64String)
+    // console.log(sliderValuesBase64String, testString)
     // TESTING !!!!!!!!
   }
 
@@ -84,18 +84,21 @@ function App() {
     <MainContainer>
       <Title />
       <QRCode value={qrCodeValue} />
-      {sliderConfigs.map((entry) => (
-        <div key={entry.key}>
-          <Slider
-            props={entry.config}
-            value={sliderValues[entry.key]}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleChange(e, entry.key)
-            }
-          />
-        </div>
-      ))}
-      <SubmitButton onClick={handleClick} />
+      <div id='sliderAndButtonContent'>
+        {sliderConfigs.map((entry) => (
+          <div key={entry.key}>
+            <Slider
+              props={entry.config}
+              value={sliderValues[entry.key]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleChange(e, entry.key)
+              }
+            />
+          </div>
+        ))}
+        <SubmitButton onClick={handleClick} />
+      </div>
+      <QRCodeLink URI={qrCodeValue} />
     </MainContainer>
   )
 }
