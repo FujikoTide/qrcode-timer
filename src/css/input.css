@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+.slider {
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #262626;
+  cursor: pointer;
+  border: 2px solid oklch(75% 0.183 55.934);
+  border-radius: 100%;
+  box-shadow: 2px 2px #262626;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #262626;
+  cursor: pointer;
+  border: 2px solid oklch(75% 0.183 55.934);
+  border-radius: 100%;
+  box-shadow: 2px 2px #262626;
+}
