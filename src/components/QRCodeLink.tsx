@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 interface QRCodeLinkType {
   URI: string
 }
@@ -5,12 +7,12 @@ interface QRCodeLinkType {
 export default function QRCodeLink({ URI }: QRCodeLinkType) {
   return (
     <div>
-      <a
+      <Link
         className='text-2xl text-orange-400 text-shadow-md text-shadow-neutral-800'
-        href={URI}
+        to={URI}
       >
         {URI}
-      </a>
+      </Link>
     </div>
   )
 }

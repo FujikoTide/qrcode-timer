@@ -5,7 +5,7 @@ import Slider from './components/Slider'
 import SubmitButton from './components/SubmitButton'
 import Title from './components/Title'
 import QRCodeLink from './components/QRCodeLink'
-import { stringToBase64, base64ToString } from './base64'
+import { stringToBase64 } from './base64'
 
 interface SliderValues {
   minutes: number
