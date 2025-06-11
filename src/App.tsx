@@ -5,9 +5,8 @@ import Slider from './components/Slider'
 import SubmitButton from './components/SubmitButton'
 import Title from './components/Title'
 import QRCodeLink from './components/QRCodeLink'
-import { stringToBase64 } from './base64'
 import TextInput from './components/TextInput'
-import { compressAndEncode } from './compression'
+import { compressAndEncodeUrlSafe } from './compression'
 
 interface SliderValues {
   minutes: number
@@ -116,7 +115,7 @@ function App() {
 
   function handleClick() {
     const payload = preparePayload(sliderValues, message)
-    const payloadString = compressAndEncode(payload)
+    const payloadString = compressAndEncodeUrlSafe(payload)
 
     setQrCodeValue(payloadString)
   }

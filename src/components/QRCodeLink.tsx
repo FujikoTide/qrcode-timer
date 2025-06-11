@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 interface QRCodeLinkType {
-  URI: string;
+  URI: string
 }
 
 export default function QRCodeLink({ URI }: QRCodeLinkType) {
@@ -14,5 +14,5 @@ export default function QRCodeLink({ URI }: QRCodeLinkType) {
         {URI}
       </Link>
     </div>
-  );
+  )
 }

@@ -5,11 +5,26 @@ export function base64ToBytes(base64: Base64String) {
   return Uint8Array.from(binString, (m) => m.codePointAt(0)!)
 }
 
+export function base64UrlToBytes(base64Url: string) {
+  let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  const padding = '='.repeat((4 - (base64.length % 4)) % 4)
+  base64 += padding
+
+  return base64ToBytes(base64 as Base64String)
+}
+
 export function bytesToBase64(bytes: Uint8Array) {
   const binString = Array.from(bytes, (byte) =>
     String.fromCodePoint(byte),
   ).join('')
   return btoa(binString)
+}
+
+export function bytesToBase64Url(bytes: Uint8Array) {
+  return bytesToBase64(bytes)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '')
 }
 
 export function stringToBase64(string: string) {
