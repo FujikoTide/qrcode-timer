@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 .slider {
   -webkit-appearance: none;
@@ -25,3 +25,15 @@
   border-radius: 100%;
   box-shadow: 2px 2px #262626;
 }
+
+/* .slider::-webkit-slider-runnable-track {
+  background: #262626;
+  border-radius: 50px;
+  border: 2px solid oklch(75% 0.183 55.934);
+}
+
+.slider::-moz-range-track {
+  background: #262626;
+  border-radius: 50px;
+  border: 2px solid oklch(75% 0.183 55.934);
+} */
