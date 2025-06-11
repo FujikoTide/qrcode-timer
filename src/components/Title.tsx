@@ -1,7 +1,7 @@
 export default function Title() {
   return (
-    <div className='text-5xl font-bold text-orange-400 dark:text-gray-400 text-shadow-md text-shadow-neutral-800 capitalize text-center p-5'>
+    <div className="p-5 text-center text-5xl font-bold text-orange-400 capitalize text-shadow-md text-shadow-neutral-800 dark:text-gray-400">
       QR Code Timer
     </div>
-  )
+  );
 }

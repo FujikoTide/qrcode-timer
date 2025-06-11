@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 interface MainContainerType {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function MainContainer({ children }: MainContainerType) {
-  return <div className='mx-auto max-w-xl h-screen'>{children}</div>
+  return <div className="mx-auto h-screen max-w-xl">{children}</div>;
 }

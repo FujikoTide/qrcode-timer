@@ -1,23 +1,23 @@
-type Base64String = string & { readonly __brand: 'Base64' }
+type Base64String = string & { readonly __brand: "Base64" };
 
 function base64ToBytes(base64: Base64String) {
-  const binString = atob(base64)
-  return Uint8Array.from(binString, (m) => m.codePointAt(0)!)
+  const binString = atob(base64);
+  return Uint8Array.from(binString, (m) => m.codePointAt(0)!);
 }
 
 function bytesToBase64(bytes: Uint8Array) {
   const binString = Array.from(bytes, (byte) =>
-    String.fromCodePoint(byte)
-  ).join('')
-  return btoa(binString)
+    String.fromCodePoint(byte),
+  ).join("");
+  return btoa(binString);
 }
 
 export function stringToBase64(string: string) {
-  return bytesToBase64(new TextEncoder().encode(string)) as Base64String
+  return bytesToBase64(new TextEncoder().encode(string)) as Base64String;
 }
 
 export function base64ToString(base64: Base64String) {
-  return new TextDecoder().decode(base64ToBytes(base64))
+  return new TextDecoder().decode(base64ToBytes(base64));
 }
 
 // Usage
