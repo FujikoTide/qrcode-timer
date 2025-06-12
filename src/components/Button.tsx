@@ -1,15 +1,16 @@
-interface SubmitButtonType {
+interface ButtonType {
   onClick: React.MouseEventHandler<HTMLButtonElement>
+  label: string
 }
 
-export default function SubmitButton({ onClick }: SubmitButtonType) {
+export default function Button({ onClick, label }: ButtonType) {
   return (
     <div className="flex justify-center">
       <button
         className="my-4 w-fit rounded-2xl bg-green-600 p-5 text-xl font-bold text-white shadow-md shadow-neutral-800 text-shadow-md text-shadow-neutral-800"
         onClick={onClick}
       >
-        Generate QR Code
+        {label}
       </button>
     </div>
   )

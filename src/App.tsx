@@ -2,7 +2,7 @@ import { useState } from 'react'
 import MainContainer from './components/MainContainer'
 import QRCode from './components/QRCode'
 import Slider from './components/Slider'
-import SubmitButton from './components/SubmitButton'
+import Button from './components/Button'
 import Title from './components/Title'
 import QRCodeLink from './components/QRCodeLink'
 import TextInput from './components/TextInput'
@@ -153,7 +153,7 @@ function App() {
             />
           </div>
         ))}
-        <SubmitButton onClick={handleClick} />
+        <Button label="Generate QR Code" onClick={handleClick} />
       </div>
     </MainContainer>
   )
