@@ -5,5 +5,9 @@ interface MainContainerType {
 }
 
 export default function MainContainer({ children }: MainContainerType) {
-  return <div className="mx-auto mt-10 h-screen max-w-xl">{children}</div>
+  return (
+    <div className="mx-auto h-screen max-w-2xl px-10 shadow-[-10px_0_15px_-4px_rgba(0,0,0,0.2),_10px_0_15px_-4px_rgba(0,0,0,0.2)]">
+      {children}
+    </div>
+  )
 }

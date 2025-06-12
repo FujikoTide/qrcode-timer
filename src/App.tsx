@@ -135,6 +135,7 @@ function App() {
     <MainContainer>
       <Title />
       <QRCode value={qrCodeValue} />
+      <QRCodeLink URI={qrCodeValue} />
       <div id="sliderAndButtonContent">
         <TextInput
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -154,7 +155,6 @@ function App() {
         ))}
         <SubmitButton onClick={handleClick} />
       </div>
-      <QRCodeLink URI={qrCodeValue} />
     </MainContainer>
   )
 }
