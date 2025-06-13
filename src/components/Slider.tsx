@@ -1,4 +1,4 @@
-import type { SliderProps } from '../App'
+import type { SliderProps } from '../pages/App'
 
 interface SliderTypes {
   value: number

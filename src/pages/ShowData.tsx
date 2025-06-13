@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { decodeAndDecompressUrlSafe } from '../compression'
-import MainContainer from './MainContainer'
-import ProgressBar from './ProgressBar'
-import Message from './Message'
+import MainContainer from '../components/MainContainer'
+import ProgressBar from '../components/ProgressBar'
+import Message from '../components/Message'
 
 export default function ShowData() {
   const params = useParams()

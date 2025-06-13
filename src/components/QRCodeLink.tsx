@@ -22,13 +22,15 @@ export default function QRCodeLink({ URI }: QRCodeLinkType) {
   const fullURL = `${baseURL}/${displayURI}`
 
   return (
-    <div className="flex justify-center">
-      <Link
-        className="text-base text-orange-400 text-shadow-md text-shadow-neutral-800"
-        to={URI}
-      >
-        {URI ? (baseURL ? fullURL : `/${displayURI}`) : ''}
-      </Link>
-    </div>
+    URI && (
+      <div className="flex justify-center">
+        <Link
+          className="text-base text-orange-400 text-shadow-md text-shadow-neutral-800"
+          to={URI}
+        >
+          {URI ? (baseURL ? fullURL : `/${displayURI}`) : ''}
+        </Link>
+      </div>
+    )
   )
 }

@@ -1,8 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./App";
-import ShowData from "./components/ShowData";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import App from './App'
+import ShowData from './ShowData'
 
-export default function Index() {
+export default function Home() {
   return (
     <BrowserRouter>
       <Routes>
@@ -10,5 +10,5 @@ export default function Index() {
         <Route path="/:id" element={<ShowData />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }

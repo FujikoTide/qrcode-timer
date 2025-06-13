@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import MainContainer from './components/MainContainer'
-import QRCode from './components/QRCode'
-import Slider from './components/Slider'
-import Button from './components/Button'
-import Title from './components/Title'
-import QRCodeLink from './components/QRCodeLink'
-import TextInput from './components/TextInput'
-import { compressAndEncodeUrlSafe } from './compression'
+import MainContainer from '../components/MainContainer'
+import QRCode from '../components/QRCode'
+import Slider from '../components/Slider'
+import Button from '../components/Button'
+import Title from '../components/Title'
+import QRCodeLink from '../components/QRCodeLink'
+import TextInput from '../components/TextInput'
+import { compressAndEncodeUrlSafe } from '../compression'
+import { useNavigate } from 'react-router-dom'
 
 interface SliderValues {
   minutes: number
@@ -131,6 +132,20 @@ function App() {
     }))
   }
 
+  const navigate = useNavigate()
+
+  function testClick1() {
+    navigate('/page1')
+  }
+
+  function testClick2() {
+    navigate('/page2')
+  }
+
+  function testClick3() {
+    navigate('/page3')
+  }
+
   return (
     <MainContainer>
       <Title />
@@ -153,6 +168,10 @@ function App() {
             />
           </div>
         ))}
+        {/* <Button label="test1" onClick={testClick1} />
+        <Button label="test2" onClick={testClick2} />
+        <Button label="test3" onClick={testClick3} /> */}
+
         <Button label="Generate QR Code" onClick={handleClick} />
       </div>
     </MainContainer>
