@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import MainContainer from '../components/MainContainer'
 import QRCode from '../components/QRCode'
 import Slider from '../components/Slider'
 import Button from '../components/Button'
@@ -7,7 +6,7 @@ import Title from '../components/Title'
 import QRCodeLink from '../components/QRCodeLink'
 import TextInput from '../components/TextInput'
 import { compressAndEncodeUrlSafe } from '../compression'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 interface SliderValues {
   minutes: number
@@ -132,22 +131,22 @@ function App() {
     }))
   }
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  function testClick1() {
-    navigate('/page1')
-  }
+  // function testClick1() {
+  //   navigate('/page1')
+  // }
 
-  function testClick2() {
-    navigate('/page2')
-  }
+  // function testClick2() {
+  //   navigate('/page2')
+  // }
 
-  function testClick3() {
-    navigate('/page3')
-  }
+  // function testClick3() {
+  //   navigate('/page3')
+  // }
 
   return (
-    <MainContainer>
+    <>
       <Title />
       <QRCode value={qrCodeValue} />
       <QRCodeLink URI={qrCodeValue} />
@@ -174,7 +173,7 @@ function App() {
 
         <Button label="Generate QR Code" onClick={handleClick} />
       </div>
-    </MainContainer>
+    </>
   )
 }
 
