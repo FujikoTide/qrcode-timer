@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import QRCode from '../components/QRCode'
 import Slider from '../components/Slider'
-import Button from '../components/Button'
+import Button from '../components/atoms/Button'
 import Title from '../components/Title'
 import QRCodeLink from '../components/QRCodeLink'
 import TextInput from '../components/TextInput'
 import { compressAndEncodeUrlSafe } from '../compression'
+import { useNavigate } from 'react-router-dom'
+import ActionButton from '../components/atoms/ActionButton'
 // import { useNavigate } from 'react-router-dom'
 
 interface SliderValues {
@@ -131,47 +133,36 @@ function App() {
     }))
   }
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
-  // function testClick1() {
-  //   navigate('/page1')
-  // }
+  function handleMessageButton() {
+    navigate('/message')
+  }
 
-  // function testClick2() {
-  //   navigate('/page2')
-  // }
+  function handleSlidersButton() {
+    navigate('/sliders')
+  }
 
-  // function testClick3() {
-  //   navigate('/page3')
-  // }
+  function handleDateButton() {
+    navigate('/date')
+  }
+
+  function handleLocationButton() {
+    navigate('/location')
+  }
 
   return (
     <>
       <Title />
       <QRCode value={qrCodeValue} />
       <QRCodeLink URI={qrCodeValue} />
-      <div id="sliderAndButtonContent">
-        <TextInput
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setMessage(e.target.value)
-          }
-        />
-        {sliderConfigs.map((entry) => (
-          <div key={entry.key}>
-            <Slider
-              props={entry.config}
-              value={sliderValues[entry.key]}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleChange(e, entry.key)
-              }
-            />
-          </div>
-        ))}
-        {/* <Button label="test1" onClick={testClick1} />
-        <Button label="test2" onClick={testClick2} />
-        <Button label="test3" onClick={testClick3} /> */}
+      <div>
+        <ActionButton label="Input Message" onClick={handleMessageButton} />
+        <ActionButton label="Input Due Time" onClick={handleSlidersButton} />
+        <ActionButton label="Input Due Date" onClick={handleDateButton} />
+        <ActionButton label="Input Location" onClick={handleLocationButton} />
 
-        <Button label="Generate QR Code" onClick={handleClick} />
+        <ActionButton label="Generate QR Code" onClick={handleClick} />
       </div>
     </>
   )

@@ -1,4 +1,33 @@
+@theme {
+  /* Colour definitions */
+
+  --color-orange: oklch(75% 0.183 55.934);
+  --color-grayblue: oklch(37.3% 0.034 259.733);
+  --color-background: oklch(37.3% 0.034 259.733);
+  --color-main-text: oklch(75% 0.183 55.934);
+  --color-text-shadow: oklch(26.9% 0 0);
+  --color-shadow: oklch(26.9% 0 0);
+  --color-text-white: #fff;
+  --color-button-primary: oklch(62.7% 0.194 149.214);
+  --color-input-background: oklch(37.3% 0.034 259.733);
+  --color-input-text-color: oklch(75% 0.183 55.934);
+  --color-input-placeholder-color: oklch(75% 0.183 55.934 / 0.7);
+
+  /* Semantic Alias Tokens */
+
+  --color-primary: var(--color-orange);
+  --color-secondary: var(--color-grayblue);
+  --color-border: var(--color-orange);
+
+  --color-text-main: var(--color-main-text);
+  --color-text-muted: var(--color-input-placeholder-color);
+}
+
 @import 'tailwindcss';
+
+body {
+  @apply bg-gray-700;
+}
 
 .slider {
   -webkit-appearance: none;
