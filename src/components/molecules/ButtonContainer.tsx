@@ -1,34 +1,15 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { HTMLAttributes, ReactNode } from 'react'
+import Flex, { type FlexProps } from '../primitives/Flex'
 
-const containerVariants = cva('flex w-full my-4', {
-  variants: {
-    justify: {
-      start: 'justify-start',
-      center: 'justify-center',
-      end: 'justify-end',
-    },
-  },
-  defaultVariants: {
-    justify: 'center',
-  },
-})
-
-export interface ButtonContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
-  children: ReactNode
-}
+export type ButtonContainerProps = FlexProps
 
 export default function ButtonContainer({
   className,
-  justify,
   children,
   ...props
 }: ButtonContainerProps) {
   return (
-    <div className={containerVariants({ justify, className })} {...props}>
+    <Flex {...props} className={`my-4 w-full ${className || ''}`}>
       {children}
-    </div>
+    </Flex>
   )
 }

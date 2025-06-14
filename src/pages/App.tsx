@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import QRCode from '../components/QRCode'
-import Slider from '../components/Slider'
-import Button from '../components/atoms/Button'
+// import Slider from '../components/Slider'
 import Title from '../components/Title'
 import QRCodeLink from '../components/QRCodeLink'
-import TextInput from '../components/TextInput'
+// import TextInput from '../components/TextInput'
 import { compressAndEncodeUrlSafe } from '../compression'
 import { useNavigate } from 'react-router-dom'
 import ActionButton from '../components/atoms/ActionButton'
+import ButtonGroup from '../components/molecules/ButtonGroup'
+import ContentColumn from '../components/molecules/ContentColumn'
+import MainContainer from '../components/organisms/MainContainer'
 // import { useNavigate } from 'react-router-dom'
 
 interface SliderValues {
@@ -153,17 +155,47 @@ function App() {
 
   return (
     <>
-      <Title />
-      <QRCode value={qrCodeValue} />
-      <QRCodeLink URI={qrCodeValue} />
-      <div>
-        <ActionButton label="Input Message" onClick={handleMessageButton} />
-        <ActionButton label="Input Due Time" onClick={handleSlidersButton} />
-        <ActionButton label="Input Due Date" onClick={handleDateButton} />
-        <ActionButton label="Input Location" onClick={handleLocationButton} />
-
-        <ActionButton label="Generate QR Code" onClick={handleClick} />
-      </div>
+      <MainContainer>
+        <Title />
+        <QRCode value={qrCodeValue} />
+        <QRCodeLink URI={qrCodeValue} />
+        <div>
+          <ContentColumn maxWidth="xl" className="my-4">
+            <ButtonGroup direction="col" align="center" gap="md">
+              <ActionButton
+                label="Input Message"
+                onClick={handleMessageButton}
+                intent="danger"
+                width="fullWidth"
+              />
+              <ActionButton
+                label="Input Due Time"
+                onClick={handleSlidersButton}
+                intent="ghost"
+                width="halfWidth"
+              />
+              <ActionButton
+                label="Input Due Date"
+                onClick={handleDateButton}
+                intent="primary"
+                width="fit"
+              />
+              <ActionButton
+                label="Input Location"
+                onClick={handleLocationButton}
+                intent="secondary"
+                width="fullWidth"
+              />
+              <ActionButton
+                label="Generate QR Code"
+                onClick={handleClick}
+                intent="warning"
+                width="fullWidth"
+              />
+            </ButtonGroup>
+          </ContentColumn>
+        </div>
+      </MainContainer>
     </>
   )
 }
