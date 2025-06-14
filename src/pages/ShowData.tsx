@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { decodeAndDecompressUrlSafe } from '../compression'
 import ProgressBar from '../components/ProgressBar'
-import Message from '../components/Message'
+import Message from '../components/atoms/Message'
 
 type ShowDataParams = {
   id: string

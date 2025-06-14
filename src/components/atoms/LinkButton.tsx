@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { buttonVariants, type ButtonVariantProps } from './atoms/Button'
+import { buttonVariants, type ButtonVariantProps } from './Button'
 
 interface LinkButtonProps extends ButtonVariantProps {
   label: string
