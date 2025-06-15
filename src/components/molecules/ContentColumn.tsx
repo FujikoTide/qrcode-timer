@@ -9,10 +9,11 @@ const contentColumnVariants = cva('w-full mx-auto', {
       md: 'max-w-md',
       lg: 'max-w-lg',
       xl: 'max-w-xl',
+      '2xl': 'max-w-2xl',
     },
   },
   defaultVariants: {
-    maxWidth: 'xs',
+    maxWidth: '2xl',
   },
 })
 
