@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import QRCode from '../components/QRCode'
 // import Slider from '../components/Slider'
-import Title from '../components/Title'
+import Title from '../components/molecules/Title'
 import QRCodeLink from '../components/QRCodeLink'
 // import TextInput from '../components/TextInput'
 import { compressAndEncodeUrlSafe } from '../compression'
@@ -16,6 +16,8 @@ import Avatar from '../components/atoms/Avatar'
 import person1 from '../images/person1.jpg'
 import person2 from '../images/person2.jpg'
 import person3 from '../images/person3.jpg'
+import Typography from '../components/atoms/Typography'
+import Collapsible from '../components/molecules/Collapsible'
 
 interface SliderValues {
   minutes: number
@@ -112,6 +114,7 @@ function App() {
 
   const [message, setMessage] = useState('')
   const [qrCodeValue, setQrCodeValue] = useState('')
+  const [generatedLink, setGeneratedLink] = useState('')
 
   function preparePayload(
     currentValues: SliderValues,
@@ -143,7 +146,12 @@ function App() {
     const payload = preparePayload(sliderValues, message)
     const payloadString = compressAndEncodeUrlSafe(payload)
 
-    setQrCodeValue(payloadString)
+    if (generatedLink) {
+      setGeneratedLink('')
+    } else {
+      setGeneratedLink(payloadString)
+      setQrCodeValue(payloadString)
+    }
   }
 
   function handleChange(
@@ -178,9 +186,11 @@ function App() {
   return (
     <>
       <MainContainer width="single">
-        <Title />
-        <QRCode value={qrCodeValue} />
-        <QRCodeLink URI={qrCodeValue} />
+        <Title>QR Code Timer</Title>
+        <Collapsible isOpen={!!generatedLink}>
+          <QRCode value={qrCodeValue} />
+          <QRCodeLink URI={qrCodeValue} />
+        </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
           <ButtonGroup direction="col" align="center" gap="md">
             <ActionButton
@@ -208,7 +218,7 @@ function App() {
               width="fullWidth"
             />
             <ActionButton
-              label="Generate QR Code"
+              label={generatedLink ? 'Hide Link' : 'Generate QR Code Link'}
               onClick={handleClick}
               intent="warning"
               width="fullWidth"
@@ -243,6 +253,44 @@ function App() {
             </div>
           </Grid>
         </div>
+        <ContentColumn maxWidth="xl" className="my-4">
+          <Typography as="p" size="2xl" align="center">
+            Hello
+          </Typography>
+          <Typography as="p" size="2xl" align="right">
+            Hello2
+          </Typography>
+          <Typography as="p" size="2xl" align="left" weight="bold">
+            Hello3
+          </Typography>
+          <Typography as="p" size="2xl" weight="light">
+            Hello4
+          </Typography>
+          <Typography as="span" size="2xl" align="center">
+            Hello
+          </Typography>
+          <Typography as="span" size="2xl" align="right">
+            Hello2
+          </Typography>
+          <Typography as="span" size="2xl" align="left" weight="bold">
+            Hello3
+          </Typography>
+          <Typography as="span" size="2xl" weight="light">
+            Hello4
+          </Typography>
+          <Typography as="h2" size="xs" align="center">
+            Hello
+          </Typography>
+          <Typography as="h2" size="sm" align="right">
+            Hello2
+          </Typography>
+          <Typography as="h2" size="md" align="left" weight="bold">
+            Hello3
+          </Typography>
+          <Typography as="h2" size="lg" weight="light">
+            Hello4
+          </Typography>
+        </ContentColumn>
       </MainContainer>
     </>
   )

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { decodeAndDecompressUrlSafe } from '../compression'
 import ProgressBar from '../components/ProgressBar'
-import Text from '../components/atoms/Text'
+import Typography from '../components/atoms/Typography'
 import MainContainer from '../components/organisms/MainContainer'
 
 type ShowDataParams = {
@@ -15,7 +15,7 @@ export default function ShowData() {
   return (
     <>
       <MainContainer>
-        <Text message={decodedObject['msg']} />
+        <Typography message={decodedObject['msg']} />
         {Object.entries(sliderObj).map((data, key) => (
           <ProgressBar key={key} props={{ ...data[1] }} />
         ))}
