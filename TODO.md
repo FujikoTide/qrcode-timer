@@ -75,3 +75,34 @@
 `UserProfileCard: Your example, showing an Avatar, user name, and other details.`
 `DataTable: A full table with headers, rows, and pagination controls.`
 `MainContainer: Your layout organism that provides the main content wrapper for a page.`
+
+### File Structure
+
+```txt
+project_name/
+├── dist/
+├── node_modules/
+├── public/
+│   ├── favicon.ico
+│   └── robots.txt
+└── src/
+    ├── assets/
+    │   ├── images/
+    │   └── fonts/
+    ├── components/
+    │   ├── atoms/
+    │   ├── molecules/
+    │   ├── organisms/
+    │   └── primitives/
+    ├── providers/          // includes context
+    ├── hooks/
+    ├── lib/                // needed?
+    │   └── utils.ts
+    ├── pages/
+    ├── styles/
+    │   └── index.css
+    ├── types/
+    │   └── index.ts
+    ├── App.tsx
+    └── main.tsx
+```

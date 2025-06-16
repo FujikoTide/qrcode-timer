@@ -1,4 +1,4 @@
-import MainContainer from './organisms/MainContainer'
+import MainContainer from '@/components/organisms/MainContainer'
 
 export default function InputLocation() {
   return (

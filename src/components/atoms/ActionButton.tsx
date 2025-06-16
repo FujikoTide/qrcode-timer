@@ -1,4 +1,7 @@
-import { buttonVariants, type ButtonVariantProps } from './Button'
+import {
+  buttonVariants,
+  type ButtonVariantProps,
+} from '@/components/atoms/Button'
 import type { MouseEventHandler } from 'react'
 
 export interface ActionButtonProps extends ButtonVariantProps {

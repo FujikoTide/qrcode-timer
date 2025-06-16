@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { decodeAndDecompressUrlSafe } from '../compression'
-import ProgressBar from '../components/ProgressBar'
-import Typography from '../components/atoms/Typography'
-import MainContainer from '../components/organisms/MainContainer'
+import { decodeAndDecompressUrlSafe } from '@/compression'
+import ProgressBar from '@/components/ProgressBar'
+import Typography from '@/components/atoms/Typography'
+import MainContainer from '@/components/organisms/MainContainer'
 
 type ShowDataParams = {
   id: string

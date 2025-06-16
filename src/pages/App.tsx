@@ -1,23 +1,25 @@
 import { useState, type ReactNode } from 'react'
-import QRCode from '../components/QRCode'
-// import Slider from '../components/Slider'
-import Title from '../components/molecules/Title'
-import QRCodeLink from '../components/QRCodeLink'
-// import TextInput from '../components/TextInput'
-import { compressAndEncodeUrlSafe } from '../compression'
+import QRCode from '@/components/QRCode'
+// import Slider from '@/components/Slider'
+import Title from '@/components/molecules/Title'
+import QRCodeLink from '@/components/QRCodeLink'
+// import TextInput from '@/components/TextInput'
+import { compressAndEncodeUrlSafe } from '@/compression'
 import { useNavigate } from 'react-router-dom'
-import ActionButton from '../components/atoms/ActionButton'
-import ButtonGroup from '../components/molecules/ButtonGroup'
-import ContentColumn from '../components/molecules/ContentColumn'
-import MainContainer from '../components/organisms/MainContainer'
-import Grid from '../components/primitives/Grid'
-import Avatar from '../components/atoms/Avatar'
+import ActionButton from '@/components/atoms/ActionButton'
+import ButtonGroup from '@/components/molecules/ButtonGroup'
+import ContentColumn from '@/components/molecules/ContentColumn'
+import MainContainer from '@/components/organisms/MainContainer'
+import Grid from '@/components/primitives/Grid'
+import Avatar from '@/components/atoms/Avatar'
 // import { useNavigate } from 'react-router-dom'
-import person1 from '../images/person1.jpg'
-import person2 from '../images/person2.jpg'
-import person3 from '../images/person3.jpg'
-import Typography from '../components/atoms/Typography'
-import Collapsible from '../components/molecules/Collapsible'
+import person1 from '@/assets/images/person1.jpg'
+import person2 from '@/assets/images/person2.jpg'
+import person3 from '@/assets/images/person3.jpg'
+import Typography from '@/components/atoms/Typography'
+import Collapsible from '@/components/molecules/Collapsible'
+import UserIcon from '@/assets/images/UserIcon.svg?react'
+import Icon from '@/components/atoms/Icon'
 
 interface SliderValues {
   minutes: number
@@ -218,7 +220,7 @@ function App() {
               width="fullWidth"
             />
             <ActionButton
-              label={generatedLink ? 'Hide Link' : 'Generate QR Code Link'}
+              label={generatedLink ? 'Hide QR Code' : 'Generate QR Code'}
               onClick={handleClick}
               intent="warning"
               width="fullWidth"
@@ -246,6 +248,71 @@ function App() {
             </div>
             <div>
               <Avatar src={person3} alt="a person" size="lg" border="rounded" />
+              <FeatureCard title="Easy to Use">
+                A simple interface lets you generate and share complex QR codes
+                in seconds.
+              </FeatureCard>
+            </div>
+            <div>
+              <Avatar src={person3} alt="a person" size="xl" border="circle" />
+              <FeatureCard title="Easy to Use">
+                A simple interface lets you generate and share complex QR codes
+                in seconds.
+              </FeatureCard>
+            </div>
+            <div>
+              <Avatar
+                alt="a person"
+                size="xl"
+                border="circle"
+                fallback={
+                  <Icon
+                    as={UserIcon}
+                    relativeSize="sm"
+                    fillColor="none"
+                    strokeColor="secondary"
+                  />
+                }
+              />
+              <FeatureCard title="Easy to Use">
+                A simple interface lets you generate and share complex QR codes
+                in seconds.
+              </FeatureCard>
+            </div>
+            <div>
+              <Avatar
+                alt="a person"
+                size="sm"
+                border="square"
+                fallback={
+                  <Icon
+                    as={UserIcon}
+                    relativeSize="lg"
+                    fillColor="none"
+                    strokeColor="secondary"
+                  />
+                }
+              />
+              <FeatureCard title="Easy to Use">
+                A simple interface lets you generate and share complex QR codes
+                in seconds.
+              </FeatureCard>
+            </div>
+            <div>
+              <Avatar
+                src="haha"
+                alt="a person"
+                size="xl"
+                border="circle"
+                fallback={
+                  <Icon
+                    as={UserIcon}
+                    relativeSize="default"
+                    fillColor="none"
+                    strokeColor="secondary"
+                  />
+                }
+              />
               <FeatureCard title="Easy to Use">
                 A simple interface lets you generate and share complex QR codes
                 in seconds.

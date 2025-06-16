@@ -1,5 +1,9 @@
-import MainContainer from './organisms/MainContainer'
-import Slider from './Slider'
+import MainContainer from '@/components/organisms/MainContainer'
+
+/////////////////////////////////////////////////////////////
+/////////// NEED TO CHANGE !!!! /////////////////////////////
+/////////////////////////////////////////////////////////////
+import Slider from '@/components/Slider'
 
 export default function InputSliders() {
   return (

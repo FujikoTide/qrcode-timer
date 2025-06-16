@@ -1,5 +1,9 @@
-import MainContainer from './organisms/MainContainer'
-import TextInput from './TextInput'
+import MainContainer from '@/components/organisms/MainContainer'
+
+/////////////////////////////////////////////////////////////
+/////////// NEED TO CHANGE !!!! /////////////////////////////
+/////////////////////////////////////////////////////////////
+import TextInput from '@/components/TextInput'
 
 // need context stuff now !
 export default function InputMessage() {

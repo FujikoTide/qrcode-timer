@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import './css/output.css'
+import './index.css'
 
 import { Root } from './Root'
 import App from './pages/App'

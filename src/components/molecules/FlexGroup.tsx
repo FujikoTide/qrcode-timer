@@ -1,4 +1,4 @@
-import Flex, { type FlexProps } from '../primitives/Flex'
+import Flex, { type FlexProps } from '@/components/primitives/Flex'
 
 export type FlexGroupProps = FlexProps
 
