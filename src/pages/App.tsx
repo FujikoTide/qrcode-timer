@@ -6,7 +6,6 @@ import QRCodeLink from '@/components/QRCodeLink'
 // import TextInput from '@/components/TextInput'
 import { compressAndEncodeUrlSafe } from '@/compression'
 import { useNavigate } from 'react-router-dom'
-import ActionButton from '@/components/atoms/ActionButton'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import MainContainer from '@/components/organisms/MainContainer'
@@ -20,6 +19,7 @@ import Typography from '@/components/atoms/Typography'
 import Collapsible from '@/components/molecules/Collapsible'
 import UserIcon from '@/assets/images/UserIcon.svg?react'
 import Icon from '@/components/atoms/Icon'
+import Button from '@/components/atoms/Button'
 
 interface SliderValues {
   minutes: number
@@ -195,36 +195,33 @@ function App() {
         </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
           <ButtonGroup direction="col" align="center" gap="md">
-            <ActionButton
-              label="Input Message"
+            <Button
               onClick={handleMessageButton}
               intent="danger"
               width="fullWidth"
-            />
-            <ActionButton
-              label="Input Due Time"
+            >
+              Input Message
+            </Button>
+            <Button
               onClick={handleSlidersButton}
               intent="ghost"
               width="halfWidth"
-            />
-            <ActionButton
-              label="Input Due Date"
-              onClick={handleDateButton}
-              intent="primary"
-              width="fit"
-            />
-            <ActionButton
-              label="Input Location"
+            >
+              Input Due Time
+            </Button>
+            <Button onClick={handleDateButton} intent="primary" width="fit">
+              Input Due Date
+            </Button>
+            <Button
               onClick={handleLocationButton}
               intent="secondary"
               width="fullWidth"
-            />
-            <ActionButton
-              label={generatedLink ? 'Hide QR Code' : 'Generate QR Code'}
-              onClick={handleClick}
-              intent="warning"
-              width="fullWidth"
-            />
+            >
+              Input Location
+            </Button>
+            <Button onClick={handleClick} intent="warning" width="fullWidth">
+              {generatedLink ? 'Hide QR Code' : 'Generate QR Code'}
+            </Button>
           </ButtonGroup>
         </ContentColumn>
         <div className="my-12 border-t border-slate-600 pt-8">
