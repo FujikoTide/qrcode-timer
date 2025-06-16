@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import type { ElementType, HTMLAttributes } from 'react'
+import type { ElementType, ReactNode } from 'react'
 
 const typographyVariants = cva(
   'text-orange-400 text-shadow-md text-shadow-neutral-800',
@@ -41,21 +41,30 @@ const typographyVariants = cva(
   },
 )
 
-export interface TypographyProps
-  extends HTMLAttributes<HTMLElement>,
-    VariantProps<typeof typographyVariants> {
-  as?: ElementType
-}
+export type TypographyVariantProps = VariantProps<typeof typographyVariants>
 
-export default function Typography({
-  className,
+type PolyMorphicProps<E extends ElementType> = {
+  as?: E
+  children: ReactNode
+} & React.ComponentPropsWithoutRef<E> &
+  TypographyVariantProps
+
+const defaultElement = 'p'
+
+export default function Typography<
+  E extends ElementType = typeof defaultElement,
+>({
+  as,
+  children,
   size,
   align,
   weight,
   textCase,
-  as: Component = 'p',
+  className,
   ...props
-}: TypographyProps) {
+}: PolyMorphicProps<E>) {
+  const Component = as || defaultElement
+
   return (
     <Component
       {...props}
@@ -66,6 +75,8 @@ export default function Typography({
         textCase,
         className,
       })}
-    />
+    >
+      {children}
+    </Component>
   )
 }
