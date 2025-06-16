@@ -1,11 +1,9 @@
 import { useState, type ReactNode } from 'react'
-import QRCode from '@/components/QRCode'
 // import Slider from '@/components/Slider'
 import Title from '@/components/molecules/Title'
-import QRCodeLink from '@/components/QRCodeLink'
 // import TextInput from '@/components/TextInput'
 import { compressAndEncodeUrlSafe } from '@/compression'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import MainContainer from '@/components/organisms/MainContainer'
@@ -20,6 +18,7 @@ import Collapsible from '@/components/molecules/Collapsible'
 import UserIcon from '@/assets/images/UserIcon.svg?react'
 import Icon from '@/components/atoms/Icon'
 import Button from '@/components/atoms/Button'
+import QRCodeDisplay from '@/components/molecules/QRDisplay'
 
 interface SliderValues {
   minutes: number
@@ -190,8 +189,7 @@ function App() {
       <MainContainer width="single">
         <Title>QR Code Timer</Title>
         <Collapsible isOpen={!!generatedLink}>
-          <QRCode value={qrCodeValue} />
-          <QRCodeLink URI={qrCodeValue} />
+          <QRCodeDisplay URI={qrCodeValue} />
         </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
           <ButtonGroup direction="col" align="center" gap="md">

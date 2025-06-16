@@ -31,7 +31,7 @@ export interface AvatarProps
     VariantProps<typeof avatarVariants> {
   src?: string
   alt: string
-  fallback: ReactNode
+  fallback?: ReactNode
 }
 
 export default function Avatar({
