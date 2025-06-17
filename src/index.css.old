@@ -2,6 +2,7 @@
 
 @theme {
   /* Colour definitions */
+
   --color-orange: oklch(75% 0.183 55.934);
   --color-grayblue: oklch(37.3% 0.034 259.733);
   --color-background: oklch(37.3% 0.034 259.733);
@@ -15,73 +16,44 @@
   --color-input-placeholder-color: oklch(75% 0.183 55.934 / 0.7);
 
   /* Semantic Alias Tokens */
+
   --color-primary: var(--color-orange);
   --color-secondary: var(--color-grayblue);
   --color-border: var(--color-orange);
+
   --color-text-main: var(--color-main-text);
   --color-text-muted: var(--color-input-placeholder-color);
 
-  /* --- ANIMATION DEFINITIONS --- */
   --background-image-dashed-border: repeating-linear-gradient(
     to right,
-    var(--color-primary) 0,
-    var(--color-primary) 6px,
+    var(--color-orange) 0,
+    var(--color-orange) 6px,
     transparent 6px,
     transparent 12px
   );
 
-  --background-image-marquee-h: repeating-linear-gradient(
-    to right,
-    var(--color-primary) 0,
-    var(--color-primary) 10px,
-    transparent 10px,
-    transparent 20px
-  );
+  --animation-marching-ants: marching-ants 1s linear infinite;
+}
 
-  --background-image-marquee-v: repeating-linear-gradient(
-    to bottom,
-    var(--color-primary) 0,
-    var(--color-primary) 10px,
-    transparent 10px,
-    transparent 20px
-  );
-
-  --animate-marching-ants: marching-ants 1s linear infinite;
-
-  --animate-march-right: march-h 1s linear infinite;
-  --animate-march-left: march-h 1s linear infinite reverse;
-  --animate-march-up: march-v 1s linear infinite;
-  --animate-march-down: march-v 1s linear infinite reverse;
-
-  @keyframes marching-ants {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 24px 0;
-    }
+/* @keyframes marching-ants {
+  0% {
+    background-position: 0 0;
   }
-
-  @keyframes march-h {
-    0% {
-      background-position-x: 0;
-    }
-    100% {
-      background-position-x: 20px;
-    }
+  100% {
+    background-position: 24px 0;
   }
+} */
 
-  @keyframes march-v {
-    0% {
-      background-position-y: 0;
-    }
-    100% {
-      background-position-y: 20px;
-    }
+@keyframes marching-ants {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
   }
 }
 
-/* --- YOUR OTHER STYLES --- */
 body {
   @apply bg-gray-700;
 }
@@ -111,3 +83,15 @@ body {
   border-radius: 100%;
   box-shadow: 2px 2px #262626;
 }
+
+/* .slider::-webkit-slider-runnable-track {
+  background: #262626;
+  border-radius: 50px;
+  border: 2px solid oklch(75% 0.183 55.934);
+}
+
+.slider::-moz-range-track {
+  background: #262626;
+  border-radius: 50px;
+  border: 2px solid oklch(75% 0.183 55.934);
+} */

@@ -3,7 +3,7 @@ import type { Intent, Size, Width } from '@/styles/types'
 import type { ElementType, ReactNode } from 'react'
 
 const buttonVariants = cva(
-  'rounded-2xl font-bold text-white shadow-md shadow-neutral-800 text-shadow-md text-shadow-neutral-800',
+  'rounded-2xl font-bold text-white shadow-md shadow-neutral-800 text-shadow-md text-shadow-neutral-800 hover:brightness-110',
   {
     variants: {
       intent: {

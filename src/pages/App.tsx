@@ -3,7 +3,7 @@ import { useState, type ReactNode } from 'react'
 import Title from '@/components/molecules/Title'
 // import TextInput from '@/components/TextInput'
 import { compressAndEncodeUrlSafe } from '@/compression'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import MainContainer from '@/components/organisms/MainContainer'
@@ -19,6 +19,10 @@ import UserIcon from '@/assets/images/UserIcon.svg?react'
 import Icon from '@/components/atoms/Icon'
 import Button from '@/components/atoms/Button'
 import QRCodeDisplay from '@/components/molecules/QRDisplay'
+import AnimatedBorderCard from '@/components/molecules/AnimatedBorderCard'
+import PureWiggleTest from '@/components/debug/PureWiggleTest'
+import PureAntsTest from '@/components/debug/PureAntsTest'
+import TrueMarqueeBorder from '@/components/molecules/TrueMarqueeBorder'
 
 interface SliderValues {
   minutes: number
@@ -166,52 +170,29 @@ function App() {
     }))
   }
 
-  const navigate = useNavigate()
-
-  function handleMessageButton() {
-    navigate('/message')
-  }
-
-  function handleSlidersButton() {
-    navigate('/sliders')
-  }
-
-  function handleDateButton() {
-    navigate('/date')
-  }
-
-  function handleLocationButton() {
-    navigate('/location')
-  }
-
   return (
     <>
       <MainContainer width="single">
         <Title>QR Code Timer</Title>
         <Collapsible isOpen={!!generatedLink}>
-          <QRCodeDisplay URI={qrCodeValue} />
+          <TrueMarqueeBorder>
+            <QRCodeDisplay URI={qrCodeValue} />
+          </TrueMarqueeBorder>
         </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
           <ButtonGroup direction="col" align="center" gap="md">
-            <Button
-              onClick={handleMessageButton}
-              intent="danger"
-              width="fullWidth"
-            >
+            <Button as={Link} to="/message" intent="danger" width="fullWidth">
               Input Message
             </Button>
-            <Button
-              onClick={handleSlidersButton}
-              intent="ghost"
-              width="halfWidth"
-            >
+            <Button as={Link} to="/sliders" intent="ghost" width="halfWidth">
               Input Due Time
             </Button>
-            <Button onClick={handleDateButton} intent="primary" width="fit">
+            <Button as={Link} to="/date" intent="primary" width="fit">
               Input Due Date
             </Button>
             <Button
-              onClick={handleLocationButton}
+              as={Link}
+              to="/location"
               intent="secondary"
               width="fullWidth"
             >
@@ -352,6 +333,16 @@ function App() {
           <Typography as="h2" size="lg" weight="light">
             Hello4
           </Typography>
+        </ContentColumn>
+        <ContentColumn className="my-12 bg-green-900/50">
+          <TrueMarqueeBorder>
+            <Typography as="h2" size="xl" weight="bold">
+              This Card Has an Animated Border!
+            </Typography>
+            <Typography as="p" align="center" className="mt-2">
+              Hover over me to see the "marching ants" effect.
+            </Typography>
+          </TrueMarqueeBorder>
         </ContentColumn>
       </MainContainer>
     </>

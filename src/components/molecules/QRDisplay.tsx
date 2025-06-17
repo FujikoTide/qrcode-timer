@@ -29,7 +29,7 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
   return (
     <Link
       to={URI}
-      className="block text-center transition-transform duration-200 hover:scale-105"
+      className="block text-center transition-transform duration-200"
     >
       <QRCode value={URI} />
       <Typography size="md" align="center" className="mt-2">
