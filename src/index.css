@@ -46,19 +46,30 @@
     transparent 20px
   );
 
-  --animate-marching-ants: marching-ants 1s linear infinite;
+  --animate-wiggle: wiggle 1s linear infinite;
 
-  --animate-march-right: march-h 1s linear infinite;
-  --animate-march-left: march-h 1s linear infinite reverse;
-  --animate-march-up: march-v 1s linear infinite;
-  --animate-march-down: march-v 1s linear infinite reverse;
+  --animate-march-right-normal: march-h 1s linear infinite;
+  --animate-march-left-normal: march-h 1s linear infinite reverse;
+  --animate-march-down-normal: march-v 1s linear infinite;
+  --animate-march-up-normal: march-v 1s linear infinite reverse;
 
-  @keyframes marching-ants {
-    0% {
-      background-position: 0 0;
-    }
+  --animate-march-right-slow: march-h 2s linear infinite;
+  --animate-march-left-slow: march-h 2s linear infinite reverse;
+  --animate-march-down-slow: march-v 2s linear infinite;
+  --animate-march-up-slow: march-v 2s linear infinite reverse;
+
+  --animate-march-right-fast: march-h 0.5s linear infinite;
+  --animate-march-left-fast: march-h 0.5s linear infinite reverse;
+  --animate-march-down-fast: march-v 0.5s linear infinite;
+  --animate-march-up-fast: march-v 0.5s linear infinite reverse;
+
+  @keyframes wiggle {
+    0%,
     100% {
-      background-position: 24px 0;
+      transform: rotate(-1deg);
+    }
+    50% {
+      transform: rotate(1deg);
     }
   }
 

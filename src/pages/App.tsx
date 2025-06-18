@@ -15,14 +15,10 @@ import person2 from '@/assets/images/person2.jpg'
 import person3 from '@/assets/images/person3.jpg'
 import Typography from '@/components/atoms/Typography'
 import Collapsible from '@/components/molecules/Collapsible'
-import UserIcon from '@/assets/images/UserIcon.svg?react'
-import Icon from '@/components/atoms/Icon'
 import Button from '@/components/atoms/Button'
 import QRCodeDisplay from '@/components/molecules/QRDisplay'
-import AnimatedBorderCard from '@/components/molecules/AnimatedBorderCard'
-import PureWiggleTest from '@/components/debug/PureWiggleTest'
-import PureAntsTest from '@/components/debug/PureAntsTest'
 import TrueMarqueeBorder from '@/components/molecules/TrueMarqueeBorder'
+import UserAvatar from '@/components/molecules/UserAvatar'
 
 interface SliderValues {
   minutes: number
@@ -175,7 +171,7 @@ function App() {
       <MainContainer width="single">
         <Title>QR Code Timer</Title>
         <Collapsible isOpen={!!generatedLink}>
-          <TrueMarqueeBorder>
+          <TrueMarqueeBorder speed="normal" borderSize="md" variant="animated">
             <QRCodeDisplay URI={qrCodeValue} />
           </TrueMarqueeBorder>
         </Collapsible>
@@ -184,10 +180,10 @@ function App() {
             <Button as={Link} to="/message" intent="danger" width="fullWidth">
               Input Message
             </Button>
-            <Button as={Link} to="/sliders" intent="ghost" width="halfWidth">
+            <Button as={Link} to="/sliders" intent="ghost" width="fullWidth">
               Input Due Time
             </Button>
-            <Button as={Link} to="/date" intent="primary" width="fit">
+            <Button as={Link} to="/date" intent="primary" width="fullWidth">
               Input Due Date
             </Button>
             <Button
@@ -237,58 +233,21 @@ function App() {
               </FeatureCard>
             </div>
             <div>
-              <Avatar
-                alt="a person"
-                size="xl"
-                border="circle"
-                fallback={
-                  <Icon
-                    as={UserIcon}
-                    relativeSize="sm"
-                    fillColor="none"
-                    strokeColor="secondary"
-                  />
-                }
-              />
+              <UserAvatar alt="a person" size="xl" border="circle" />
               <FeatureCard title="Easy to Use">
                 A simple interface lets you generate and share complex QR codes
                 in seconds.
               </FeatureCard>
             </div>
             <div>
-              <Avatar
-                alt="a person"
-                size="sm"
-                border="square"
-                fallback={
-                  <Icon
-                    as={UserIcon}
-                    relativeSize="lg"
-                    fillColor="none"
-                    strokeColor="secondary"
-                  />
-                }
-              />
+              <UserAvatar alt="a person" size="sm" border="square" />
               <FeatureCard title="Easy to Use">
                 A simple interface lets you generate and share complex QR codes
                 in seconds.
               </FeatureCard>
             </div>
             <div>
-              <Avatar
-                src="haha"
-                alt="a person"
-                size="xl"
-                border="circle"
-                fallback={
-                  <Icon
-                    as={UserIcon}
-                    relativeSize="default"
-                    fillColor="none"
-                    strokeColor="secondary"
-                  />
-                }
-              />
+              <UserAvatar src="haha" alt="a person" size="xl" border="circle" />
               <FeatureCard title="Easy to Use">
                 A simple interface lets you generate and share complex QR codes
                 in seconds.
@@ -334,15 +293,13 @@ function App() {
             Hello4
           </Typography>
         </ContentColumn>
-        <ContentColumn className="my-12 bg-green-900/50">
-          <TrueMarqueeBorder>
-            <Typography as="h2" size="xl" weight="bold">
-              This Card Has an Animated Border!
-            </Typography>
-            <Typography as="p" align="center" className="mt-2">
-              Hover over me to see the "marching ants" effect.
-            </Typography>
-          </TrueMarqueeBorder>
+        <ContentColumn className="hover:animate-wiggle my-12 bg-green-900/50">
+          <Typography as="h2" size="xl" weight="bold">
+            This Card Has an Animated Border!
+          </Typography>
+          <Typography as="p" align="center" className="mt-2">
+            Hover over me to see the "marching ants" effect.
+          </Typography>
         </ContentColumn>
       </MainContainer>
     </>
