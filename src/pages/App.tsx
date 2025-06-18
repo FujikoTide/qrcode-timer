@@ -19,6 +19,7 @@ import Button from '@/components/atoms/Button'
 import QRCodeDisplay from '@/components/molecules/QRDisplay'
 import TrueMarqueeBorder from '@/components/molecules/TrueMarqueeBorder'
 import UserAvatar from '@/components/molecules/UserAvatar'
+import Spinner from '@/components/atoms/Spinner'
 
 interface SliderValues {
   minutes: number
