@@ -109,15 +109,15 @@ export default function TrueMarqueeBorder({
   const borderWidthClasses = borderSizeMap[borderSize]
 
   // --- THE DEBUGGING CODE ---
-  const topBorderClasses = topBorderVariants({
-    variant,
-    speed,
-    className: borderWidthClasses.h,
-  })
+  // const topBorderClasses = topBorderVariants({
+  //   variant,
+  //   speed,
+  //   className: borderWidthClasses.h,
+  // })
 
-  console.log('--- TrueMarqueeBorder Render ---')
-  console.log('Props received:', { variant, speed, borderSize })
-  console.log('Generated Top Border Classes:', topBorderClasses)
+  // console.log('--- TrueMarqueeBorder Render ---')
+  // console.log('Props received:', { variant, speed, borderSize })
+  // console.log('Generated Top Border Classes:', topBorderClasses)
   // --- END DEBUGGING CODE ---
 
   return (

@@ -1,10 +1,10 @@
 import FormDatePicker from './atoms/FormDatePicker'
 import ContentColumn from './molecules/ContentColumn'
 
-export default function InputDate() {
+export default function InputDate({ ...props }) {
   return (
     <ContentColumn className="text-center">
-      <FormDatePicker />
+      <FormDatePicker {...props} />
     </ContentColumn>
   )
 }

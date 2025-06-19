@@ -12,62 +12,56 @@ import InputMessage from '@/components/InputMessage'
 import InputDate from '@/components/InputDate'
 import InputLocation from '@/components/InputLocation'
 
-interface QRCodePayload {
-  msg: string
-  s: { [key: string]: SliderPayload }
-  t: number
+// interface QRCodeProps {
+//   l: string | undefined
+//   m: string | undefined
+//   d: string | undefined
+// }
+
+interface PreparePayloadProps {
+  location?: string
+  message?: string
+  date?: string
 }
 
 const keyMap = {
   location: 'l',
   message: 'm',
-  timestamp: 't',
+  date: 'd',
 } as const
 
 function App() {
+  const [dataForQrCode, setDataForQrCode] = useState<PreparePayloadProps>({})
   const [qrCodeValue, setQrCodeValue] = useState('')
   const [generatedLink, setGeneratedLink] = useState('')
   const [title, setTitle] = useState('QR Code Timer')
   const [activeSection, setActiveSection] = useState<string | null>(null)
 
-  // function preparePayload(
-  //   currentValues: SliderValues,
-  //   message: string,
-  // ): QRCodePayload {
-  //   const slidersObject = sliderConfigs.reduce(
-  //     (acc, sliderConfig) => {
-  //       const sliderKey = keyMap[sliderConfig.key]
-  //       const sliderData: SliderPayload = {
-  //         [keyMap.label]: sliderConfig.config.label,
-  //         [keyMap.min]: sliderConfig.config.min,
-  //         [keyMap.max]: sliderConfig.config.max,
-  //         [keyMap.value]: currentValues[sliderConfig.key],
-  //       }
-  //       acc[sliderKey] = sliderData
-  //       return acc
-  //     },
-  //     {} as { [key: string]: SliderPayload },
-  //   )
+  function preparePayload({ location, message, date }: PreparePayloadProps) {
+    return {
+      [keyMap.location]: location,
+      [keyMap.message]: message,
+      [keyMap.date]: date,
+    }
+  }
 
-  //   return {
-  //     [keyMap.message]: message,
-  //     [keyMap.sliders]: slidersObject,
-  //     [keyMap.timestamp]: Date.now(),
-  //   }
-  // }
+  const handleQrCodeData = <K extends keyof PreparePayloadProps>(
+    key: K,
+    value: PreparePayloadProps[K],
+  ) => {
+    setDataForQrCode((prev) => ({ ...prev, [key]: value }))
+  }
 
   function handleGenerateQRCode() {
-    // const payload = preparePayload(sliderValues, message)
-    // const payloadString = compressAndEncodeUrlSafe(payload)
+    console.log(dataForQrCode)
+    const payload = preparePayload(dataForQrCode)
+    console.log(payload)
+    const payloadString = compressAndEncodeUrlSafe(payload)
 
     toggleSection('generatedLink', 'QR Code Timer')
 
-    // if (generatedLink) {
-    //   setGeneratedLink('')
-    // } else {
-    //   setGeneratedLink(payloadString)
-    //   setQrCodeValue(payloadString)
-    // }
+    setGeneratedLink(payloadString)
+    setQrCodeValue(payloadString)
   }
 
   const toggleSection = (section: string, title: string) => {
@@ -88,10 +82,18 @@ function App() {
           </TrueMarqueeBorder>
         </Collapsible>
         <Collapsible isOpen={activeSection === 'message'}>
-          <InputMessage />
+          <InputMessage
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleQrCodeData('message', e.target.value)
+            }}
+          />
         </Collapsible>
         <Collapsible isOpen={activeSection === 'date'}>
-          <InputDate />
+          <InputDate
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleQrCodeData('date', e.target.value)
+            }}
+          />
         </Collapsible>
         <Collapsible isOpen={activeSection === 'location'}>
           <InputLocation />

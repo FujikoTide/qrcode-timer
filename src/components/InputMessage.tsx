@@ -2,7 +2,7 @@ import FormTextInput from '@/components/atoms/FormTextInput'
 import ContentColumn from './molecules/ContentColumn'
 
 // need context stuff now !
-export default function InputMessage() {
+export default function InputMessage({ ...props }) {
   return (
     <ContentColumn>
       <FormTextInput
@@ -15,6 +15,7 @@ export default function InputMessage() {
         textSize="xl"
         placeholderColor="warning"
         backgroundColor="default"
+        {...props}
       />
     </ContentColumn>
   )
