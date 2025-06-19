@@ -53,9 +53,8 @@ function App() {
   }
 
   function handleGenerateQRCode() {
-    console.log(dataForQrCode)
+    console.log(generatedLink)
     const payload = preparePayload(dataForQrCode)
-    console.log(payload)
     const payloadString = compressAndEncodeUrlSafe(payload)
 
     toggleSection('generatedLink', 'QR Code Timer')
@@ -76,6 +75,7 @@ function App() {
     <>
       <MainContainer width="single">
         <Title>{title}</Title>
+        {!generatedLink ? 'some instructions'! : null}
         <Collapsible isOpen={activeSection === 'generatedLink'}>
           <TrueMarqueeBorder speed="normal" borderSize="md" variant="animated">
             <QRCodeDisplay URI={qrCodeValue} />
