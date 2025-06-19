@@ -2,10 +2,10 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { ElementType, ReactNode } from 'react'
 
 const typographyVariants = cva(
-  'text-orange-400 text-shadow-md text-shadow-neutral-800',
+  'text-orange-400 text-shadow-md text-shadow-neutral-800 transition-all duration-300 ease-in-out',
   {
     variants: {
-      size: {
+      textSize: {
         // can use -mt-X for spacing adjustment in the variants
         xs: 'text-xs',
         sm: 'text-sm',
@@ -20,7 +20,7 @@ const typographyVariants = cva(
         center: 'text-center',
         right: 'text-right',
       },
-      weight: {
+      textWeight: {
         light: 'font-light',
         normal: 'font-normal',
         bold: 'font-bold',
@@ -33,9 +33,9 @@ const typographyVariants = cva(
       },
     },
     defaultVariants: {
-      size: 'md',
+      textSize: 'md',
       align: 'center',
-      weight: 'normal',
+      textWeight: 'normal',
       textCase: 'normal',
     },
   },
@@ -56,9 +56,9 @@ export default function Typography<
 >({
   as,
   children,
-  size,
+  textSize,
   align,
-  weight,
+  textWeight,
   textCase,
   className,
   ...props
@@ -69,9 +69,9 @@ export default function Typography<
     <Component
       {...props}
       className={typographyVariants({
-        size,
+        textSize,
         align,
-        weight,
+        textWeight,
         textCase,
         className,
       })}

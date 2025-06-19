@@ -5,12 +5,13 @@ interface TitleProps {
   children: ReactNode
 }
 
+// how to pass class names down to here?
 export default function Title({ children }: TitleProps) {
   return (
     <Typography
       as="h1"
-      size="3xl"
-      weight="bold"
+      textSize="3xl"
+      textWeight="bold"
       align="center"
       textCase="capitalize"
       className="pb-5"

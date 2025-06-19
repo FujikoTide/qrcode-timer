@@ -1,38 +1,17 @@
-import { useState, type ReactNode } from 'react'
-// import Slider from '@/components/Slider'
+import { useState } from 'react'
 import Title from '@/components/molecules/Title'
-// import TextInput from '@/components/TextInput'
 import { compressAndEncodeUrlSafe } from '@/compression'
 import { Link } from 'react-router-dom'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import MainContainer from '@/components/organisms/MainContainer'
-import Grid from '@/components/primitives/Grid'
-import Avatar from '@/components/atoms/Avatar'
-// import { useNavigate } from 'react-router-dom'
-import person1 from '@/assets/images/person1.jpg'
-import person2 from '@/assets/images/person2.jpg'
-import person3 from '@/assets/images/person3.jpg'
-import Typography from '@/components/atoms/Typography'
 import Collapsible from '@/components/molecules/Collapsible'
 import Button from '@/components/atoms/Button'
 import QRCodeDisplay from '@/components/molecules/QRDisplay'
 import TrueMarqueeBorder from '@/components/molecules/TrueMarqueeBorder'
-import UserAvatar from '@/components/molecules/UserAvatar'
-import Spinner from '@/components/atoms/Spinner'
-
-interface SliderValues {
-  minutes: number
-  hours: number
-  days: number
-}
-
-interface SliderPayload {
-  l: string
-  n: number
-  x: number
-  v: number
-}
+import InputMessage from '@/components/InputMessage'
+import InputDate from '@/components/InputDate'
+import InputLocation from '@/components/InputLocation'
 
 interface QRCodePayload {
   msg: string
@@ -40,267 +19,128 @@ interface QRCodePayload {
   t: number
 }
 
-export interface SliderProps {
-  label: string
-  min: number
-  max: number
-  default: number
-}
-
-const MINUTES: SliderProps = {
-  label: 'minutes',
-  min: 0,
-  max: 60,
-  default: 0,
-} as const
-
-const HOURS: SliderProps = {
-  label: 'hours',
-  min: 0,
-  max: 60,
-  default: 0,
-} as const
-
-const DAYS: SliderProps = {
-  label: 'days',
-  min: 0,
-  max: 365,
-  default: 0,
-} as const
-
 const keyMap = {
-  minutes: 'm',
-  hours: 'h',
-  days: 'd',
   label: 'l',
   min: 'n',
   max: 'x',
   value: 'v',
   message: 'msg',
   timestamp: 't',
-  sliders: 's',
 } as const
 
-const sliderConfigs = [
-  {
-    key: 'minutes' as const,
-    config: MINUTES,
-  },
-  { key: 'hours' as const, config: HOURS },
-  { key: 'days' as const, config: DAYS },
-]
-
-// EXAMPLE CARD
-function FeatureCard({
-  title,
-  children,
-}: {
-  title: string
-  children: ReactNode
-}) {
-  return (
-    <div className="rounded-lg bg-slate-700 p-4">
-      <h3 className="text-lg font-bold text-sky-400">{title}</h3>
-      <p className="mt-2 text-sm text-slate-300">{children}</p>
-    </div>
-  )
-}
-// EXAMPLE CARD
-
 function App() {
-  const [sliderValues, setSliderValues] = useState<SliderValues>({
-    minutes: MINUTES.default,
-    hours: HOURS.default,
-    days: DAYS.default,
-  })
-
-  const [message, setMessage] = useState('')
   const [qrCodeValue, setQrCodeValue] = useState('')
   const [generatedLink, setGeneratedLink] = useState('')
+  const [title, setTitle] = useState('QR Code Timer')
+  const [activeSection, setActiveSection] = useState<string | null>(null)
 
-  function preparePayload(
-    currentValues: SliderValues,
-    message: string,
-  ): QRCodePayload {
-    const slidersObject = sliderConfigs.reduce(
-      (acc, sliderConfig) => {
-        const sliderKey = keyMap[sliderConfig.key]
-        const sliderData: SliderPayload = {
-          [keyMap.label]: sliderConfig.config.label,
-          [keyMap.min]: sliderConfig.config.min,
-          [keyMap.max]: sliderConfig.config.max,
-          [keyMap.value]: currentValues[sliderConfig.key],
-        }
-        acc[sliderKey] = sliderData
-        return acc
-      },
-      {} as { [key: string]: SliderPayload },
-    )
+  // function preparePayload(
+  //   currentValues: SliderValues,
+  //   message: string,
+  // ): QRCodePayload {
+  //   const slidersObject = sliderConfigs.reduce(
+  //     (acc, sliderConfig) => {
+  //       const sliderKey = keyMap[sliderConfig.key]
+  //       const sliderData: SliderPayload = {
+  //         [keyMap.label]: sliderConfig.config.label,
+  //         [keyMap.min]: sliderConfig.config.min,
+  //         [keyMap.max]: sliderConfig.config.max,
+  //         [keyMap.value]: currentValues[sliderConfig.key],
+  //       }
+  //       acc[sliderKey] = sliderData
+  //       return acc
+  //     },
+  //     {} as { [key: string]: SliderPayload },
+  //   )
 
-    return {
-      [keyMap.message]: message,
-      [keyMap.sliders]: slidersObject,
-      [keyMap.timestamp]: Date.now(),
-    }
+  //   return {
+  //     [keyMap.message]: message,
+  //     [keyMap.sliders]: slidersObject,
+  //     [keyMap.timestamp]: Date.now(),
+  //   }
+  // }
+
+  function handleGenerateQRCode() {
+    // const payload = preparePayload(sliderValues, message)
+    // const payloadString = compressAndEncodeUrlSafe(payload)
+
+    toggleSection('generatedLink', 'QR Code Timer')
+
+    // if (generatedLink) {
+    //   setGeneratedLink('')
+    // } else {
+    //   setGeneratedLink(payloadString)
+    //   setQrCodeValue(payloadString)
+    // }
   }
 
-  function handleClick() {
-    const payload = preparePayload(sliderValues, message)
-    const payloadString = compressAndEncodeUrlSafe(payload)
-
-    if (generatedLink) {
-      setGeneratedLink('')
-    } else {
-      setGeneratedLink(payloadString)
-      setQrCodeValue(payloadString)
-    }
-  }
-
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement>,
-    sliderName: keyof SliderValues,
-  ) {
-    const newValue = parseInt(e.target.value, 10)
-    setSliderValues((prevValues) => ({
-      ...prevValues,
-      [sliderName]: newValue,
-    }))
+  const toggleSection = (section: string, title: string) => {
+    setActiveSection((prev) => {
+      const isClosing = prev === section
+      setTitle(isClosing ? 'QR Code Timer' : title)
+      return isClosing ? null : section
+    })
   }
 
   return (
     <>
       <MainContainer width="single">
-        <Title>QR Code Timer</Title>
-        <Collapsible isOpen={!!generatedLink}>
+        <Title>{title}</Title>
+        <Collapsible isOpen={activeSection === 'generatedLink'}>
           <TrueMarqueeBorder speed="normal" borderSize="md" variant="animated">
             <QRCodeDisplay URI={qrCodeValue} />
           </TrueMarqueeBorder>
         </Collapsible>
+        <Collapsible isOpen={activeSection === 'message'}>
+          <InputMessage />
+        </Collapsible>
+        <Collapsible isOpen={activeSection === 'date'}>
+          <InputDate />
+        </Collapsible>
+        <Collapsible isOpen={activeSection === 'location'}>
+          <InputLocation />
+        </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
           <ButtonGroup direction="col" align="center" gap="md">
-            <Button as={Link} to="/message" intent="danger" width="fullWidth">
-              Input Message
-            </Button>
-            <Button as={Link} to="/sliders" intent="ghost" width="fullWidth">
-              Input Due Time
-            </Button>
-            <Button as={Link} to="/date" intent="primary" width="fullWidth">
-              Input Due Date
+            <Button
+              onClick={() =>
+                toggleSection('message', 'QR Code Timer - Input Message')
+              }
+              intent="danger"
+              width="fullWidth"
+            >
+              {activeSection === 'message' ? 'Hide Message' : 'Input Message'}
             </Button>
             <Button
-              as={Link}
-              to="/location"
+              onClick={() =>
+                toggleSection('date', 'QR Code Timer - Input Date')
+              }
+              intent="primary"
+              width="fullWidth"
+            >
+              {activeSection === 'date' ? 'Hide Date' : 'Input Date'}
+            </Button>
+            <Button
+              onClick={() =>
+                toggleSection('location', 'QR Code Timer - Input Location')
+              }
               intent="secondary"
               width="fullWidth"
             >
-              Input Location
+              {activeSection === 'location'
+                ? 'Hide Location'
+                : 'Input Location'}
             </Button>
-            <Button onClick={handleClick} intent="warning" width="fullWidth">
-              {generatedLink ? 'Hide QR Code' : 'Generate QR Code'}
+            <Button
+              onClick={handleGenerateQRCode}
+              intent="warning"
+              width="fullWidth"
+            >
+              {activeSection === 'generatedLink'
+                ? 'Hide QR Code'
+                : 'Generate QR Code'}
             </Button>
           </ButtonGroup>
-        </ContentColumn>
-        <div className="my-12 border-t border-slate-600 pt-8">
-          <h2 className="mb-8 text-center text-2xl font-bold text-orange-400">
-            Features
-          </h2>
-          <Grid cols={2} gap="md">
-            <div>
-              <Avatar src={person1} alt="a person" size="sm" border="square" />
-              <FeatureCard title="Dynamic Data">
-                Create QR codes that contain rich, dynamic data including dates
-                and times.
-              </FeatureCard>
-            </div>
-            <div>
-              <Avatar src={person2} alt="a person" size="md" border="circle" />
-              <FeatureCard title="Secure & Private">
-                All data is compressed and encoded directly in the URL. Nothing
-                is stored on a server.
-              </FeatureCard>
-            </div>
-            <div>
-              <Avatar src={person3} alt="a person" size="lg" border="rounded" />
-              <FeatureCard title="Easy to Use">
-                A simple interface lets you generate and share complex QR codes
-                in seconds.
-              </FeatureCard>
-            </div>
-            <div>
-              <Avatar src={person3} alt="a person" size="xl" border="circle" />
-              <FeatureCard title="Easy to Use">
-                A simple interface lets you generate and share complex QR codes
-                in seconds.
-              </FeatureCard>
-            </div>
-            <div>
-              <UserAvatar alt="a person" size="xl" border="circle" />
-              <FeatureCard title="Easy to Use">
-                A simple interface lets you generate and share complex QR codes
-                in seconds.
-              </FeatureCard>
-            </div>
-            <div>
-              <UserAvatar alt="a person" size="sm" border="square" />
-              <FeatureCard title="Easy to Use">
-                A simple interface lets you generate and share complex QR codes
-                in seconds.
-              </FeatureCard>
-            </div>
-            <div>
-              <UserAvatar src="haha" alt="a person" size="xl" border="circle" />
-              <FeatureCard title="Easy to Use">
-                A simple interface lets you generate and share complex QR codes
-                in seconds.
-              </FeatureCard>
-            </div>
-          </Grid>
-        </div>
-        <ContentColumn maxWidth="xl" className="my-4">
-          <Typography as="p" size="2xl" align="center">
-            Hello
-          </Typography>
-          <Typography as="p" size="2xl" align="right">
-            Hello2
-          </Typography>
-          <Typography as="p" size="2xl" align="left" weight="bold">
-            Hello3
-          </Typography>
-          <Typography as="p" size="2xl" weight="light">
-            Hello4
-          </Typography>
-          <Typography as="span" size="2xl" align="center">
-            Hello
-          </Typography>
-          <Typography as="span" size="2xl" align="right">
-            Hello2
-          </Typography>
-          <Typography as="span" size="2xl" align="left" weight="bold">
-            Hello3
-          </Typography>
-          <Typography as="span" size="2xl" weight="light">
-            Hello4
-          </Typography>
-          <Typography as="h2" size="xs" align="center">
-            Hello
-          </Typography>
-          <Typography as="h2" size="sm" align="right">
-            Hello2
-          </Typography>
-          <Typography as="h2" size="md" align="left" weight="bold">
-            Hello3
-          </Typography>
-          <Typography as="h2" size="lg" weight="light">
-            Hello4
-          </Typography>
-        </ContentColumn>
-        <ContentColumn className="hover:animate-wiggle my-12 bg-green-900/50">
-          <Typography as="h2" size="xl" weight="bold">
-            This Card Has an Animated Border!
-          </Typography>
-          <Typography as="p" align="center" className="mt-2">
-            Hover over me to see the "marching ants" effect.
-          </Typography>
         </ContentColumn>
       </MainContainer>
     </>

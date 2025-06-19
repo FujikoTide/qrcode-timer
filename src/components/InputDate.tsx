@@ -1,11 +1,11 @@
-import MainContainer from '@/components/organisms/MainContainer'
+import FormDatePicker from './atoms/FormDatePicker'
+import ContentColumn from './molecules/ContentColumn'
+import Title from './molecules/Title'
 
 export default function InputDate() {
   return (
-    <MainContainer>
-      <div className="pb-5 text-center text-3xl font-bold text-orange-400 capitalize text-shadow-md text-shadow-neutral-800">
-        QR Code Timer - Input Due Date
-      </div>
-    </MainContainer>
+    <ContentColumn className="text-center">
+      <FormDatePicker />
+    </ContentColumn>
   )
 }

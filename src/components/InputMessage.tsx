@@ -1,24 +1,22 @@
-import MainContainer from '@/components/organisms/MainContainer'
-
-/////////////////////////////////////////////////////////////
-/////////// NEED TO CHANGE !!!! /////////////////////////////
-/////////////////////////////////////////////////////////////
-import TextInput from '@/components/TextInput'
+import FormTextInput from '@/components/atoms/FormTextInput'
+import Title from '@/components/molecules/Title'
+import ContentColumn from './molecules/ContentColumn'
 
 // need context stuff now !
 export default function InputMessage() {
   return (
-    <>
-      <MainContainer>
-        <div className="pb-5 text-center text-3xl font-bold text-orange-400 capitalize text-shadow-md text-shadow-neutral-800">
-          QR Code Timer - Input Message
-        </div>
-        <TextInput
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setMessage(e.target.value)
-          }
-        />
-      </MainContainer>
-    </>
+    <ContentColumn>
+      <FormTextInput
+        name="message"
+        placeholder="Enter Message..."
+        rounded="rounded"
+        textCase="capitalize"
+        textWeight="bold"
+        border="lg"
+        textSize="xl"
+        placeholderColor="warning"
+        backgroundColor="default"
+      />
+    </ContentColumn>
   )
 }
