@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Title from '@/components/molecules/Title'
 import { compressAndEncodeUrlSafe } from '@/compression'
-import { Link } from 'react-router-dom'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import MainContainer from '@/components/organisms/MainContainer'
@@ -20,11 +19,8 @@ interface QRCodePayload {
 }
 
 const keyMap = {
-  label: 'l',
-  min: 'n',
-  max: 'x',
-  value: 'v',
-  message: 'msg',
+  location: 'l',
+  message: 'm',
   timestamp: 't',
 } as const
 

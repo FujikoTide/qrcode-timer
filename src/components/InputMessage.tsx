@@ -1,5 +1,4 @@
 import FormTextInput from '@/components/atoms/FormTextInput'
-import Title from '@/components/molecules/Title'
 import ContentColumn from './molecules/ContentColumn'
 
 // need context stuff now !
