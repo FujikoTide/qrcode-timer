@@ -29,7 +29,7 @@ const topBorderVariants = cva(`${baseBorderStyles} top-0 right-0 left-0`, {
   variants: {
     variant: {
       static: `opacity-100 bg-marquee-h`,
-      animated: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-h`,
+      hover: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-h`,
     },
     speed: {
       slow: 'group-hover:animate-march-right-slow',
@@ -38,7 +38,7 @@ const topBorderVariants = cva(`${baseBorderStyles} top-0 right-0 left-0`, {
     },
   },
   defaultVariants: {
-    variant: 'animated',
+    variant: 'hover',
     speed: 'normal',
   },
 })
@@ -49,7 +49,7 @@ const bottomBorderVariants = cva(
     variants: {
       variant: {
         static: `opacity-100 bg-marquee-h`,
-        animated: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-h`,
+        hover: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-h`,
       },
       speed: {
         slow: 'group-hover:animate-march-left-slow',
@@ -58,7 +58,7 @@ const bottomBorderVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'animated',
+      variant: 'hover',
       speed: 'normal',
     },
   },
@@ -68,7 +68,7 @@ const leftBorderVariants = cva(`${baseBorderStyles} top-0 bottom-0 left-0`, {
   variants: {
     variant: {
       static: `opacity-100 bg-marquee-v`,
-      animated: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-v`,
+      hover: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-v`,
     },
     speed: {
       slow: 'group-hover:animate-march-up-slow',
@@ -77,7 +77,7 @@ const leftBorderVariants = cva(`${baseBorderStyles} top-0 bottom-0 left-0`, {
     },
   },
   defaultVariants: {
-    variant: 'animated',
+    variant: 'hover',
     speed: 'normal',
   },
 })
@@ -86,7 +86,7 @@ const rightBorderVariants = cva(`${baseBorderStyles} top-0 right-0 bottom-0`, {
   variants: {
     variant: {
       static: `opacity-100 bg-marquee-v`,
-      animated: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-v`,
+      hover: `opacity-0 group-hover:opacity-100 group-hover:bg-marquee-v`,
     },
     speed: {
       slow: 'group-hover:animate-march-down-slow',
@@ -95,7 +95,7 @@ const rightBorderVariants = cva(`${baseBorderStyles} top-0 right-0 bottom-0`, {
     },
   },
   defaultVariants: {
-    variant: 'animated',
+    variant: 'hover',
     speed: 'normal',
   },
 })
@@ -107,18 +107,6 @@ export default function TrueMarqueeBorder({
   borderSize = 'md',
 }: TrueMarqueeBorderProps) {
   const borderWidthClasses = borderSizeMap[borderSize]
-
-  // --- THE DEBUGGING CODE ---
-  // const topBorderClasses = topBorderVariants({
-  //   variant,
-  //   speed,
-  //   className: borderWidthClasses.h,
-  // })
-
-  // console.log('--- TrueMarqueeBorder Render ---')
-  // console.log('Props received:', { variant, speed, borderSize })
-  // console.log('Generated Top Border Classes:', topBorderClasses)
-  // --- END DEBUGGING CODE ---
 
   return (
     <div className="group relative">

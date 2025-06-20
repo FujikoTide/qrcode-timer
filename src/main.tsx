@@ -6,32 +6,32 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom'
+import { APIProvider } from '@vis.gl/react-google-maps'
 
 import './index.css'
 
 import { Root } from './Root'
 import App from './pages/App'
 import ShowData from './pages/ShowData'
-import InputMessage from './components/InputMessage'
-import InputSliders from './components/InputSliders'
-import InputDate from './components/InputDate'
-import InputLocation from './components/InputLocation'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index element={<App />} />
-      <Route path="message" element={<InputMessage />} />
-      <Route path="sliders" element={<InputSliders />} />
-      <Route path="date" element={<InputDate />} />
-      <Route path="location" element={<InputLocation />} />
       <Route path=":id" element={<ShowData />} />
     </Route>,
   ),
 )
 
+const libraries: 'geocoding'[] = ['geocoding']
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <APIProvider
+      apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+      libraries={libraries}
+    >
+      <RouterProvider router={router} />
+    </APIProvider>
   </React.StrictMode>,
 )

@@ -1,5 +1,5 @@
 import FormTextInput from '@/components/atoms/FormTextInput'
-import ContentColumn from './molecules/ContentColumn'
+import ContentColumn from '@/components/molecules/ContentColumn'
 
 // need context stuff now !
 export default function InputMessage({ ...props }) {

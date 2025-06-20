@@ -8,9 +8,10 @@ import Collapsible from '@/components/molecules/Collapsible'
 import Button from '@/components/atoms/Button'
 import QRCodeDisplay from '@/components/molecules/QRDisplay'
 import TrueMarqueeBorder from '@/components/molecules/TrueMarqueeBorder'
-import InputMessage from '@/components/InputMessage'
-import InputDate from '@/components/InputDate'
-import InputLocation from '@/components/InputLocation'
+import InputMessage from '@/components/molecules/InputMessage'
+import InputDate from '@/components/molecules/InputDate'
+import InputLocation from '@/components/molecules/InputLocation'
+import Instructions from '@/components/molecules/Instructions'
 
 // interface QRCodeProps {
 //   l: string | undefined
@@ -29,6 +30,8 @@ const keyMap = {
   message: 'm',
   date: 'd',
 } as const
+
+const initialCoordinates = { lat: 51.5074, lng: -0.1278 } // London
 
 function App() {
   const [dataForQrCode, setDataForQrCode] = useState<PreparePayloadProps>({})
@@ -53,7 +56,6 @@ function App() {
   }
 
   function handleGenerateQRCode() {
-    console.log(generatedLink)
     const payload = preparePayload(dataForQrCode)
     const payloadString = compressAndEncodeUrlSafe(payload)
 
@@ -75,9 +77,11 @@ function App() {
     <>
       <MainContainer width="single">
         <Title>{title}</Title>
-        {!generatedLink ? 'some instructions'! : null}
+        {Object.entries(dataForQrCode).length === 0 && generatedLink === '' && (
+          <Instructions />
+        )}
         <Collapsible isOpen={activeSection === 'generatedLink'}>
-          <TrueMarqueeBorder speed="normal" borderSize="md" variant="animated">
+          <TrueMarqueeBorder speed="normal" borderSize="md" variant="hover">
             <QRCodeDisplay URI={qrCodeValue} />
           </TrueMarqueeBorder>
         </Collapsible>
@@ -96,7 +100,12 @@ function App() {
           />
         </Collapsible>
         <Collapsible isOpen={activeSection === 'location'}>
-          <InputLocation />
+          <InputLocation
+            initialCoordinates={initialCoordinates}
+            onLocationChange={(location) =>
+              handleQrCodeData('location', location)
+            }
+          />
         </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
           <ButtonGroup direction="col" align="center" gap="md">
