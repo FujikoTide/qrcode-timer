@@ -6,6 +6,7 @@ import MainContainer from '@/components/organisms/MainContainer'
 import Title from '@/components/molecules/Title'
 import LocationDisplayMap from '@/components/molecules/locationDisplayMap'
 import ContentColumn from '@/components/molecules/ContentColumn'
+import { type Base64String } from '@/base64'
 
 interface DecodedData {
   l?: string
@@ -19,7 +20,7 @@ interface Coordinates {
 }
 
 type ShowDataParams = {
-  id: string
+  id: Base64String
 }
 
 export default function ShowData() {
@@ -104,11 +105,9 @@ export default function ShowData() {
             </Typography>
           )}
           {decodedData.l && !locationCoords && (
-            <>
-              <Typography>
-                Location data is present but seems to be in an invalid format.
-              </Typography>
-            </>
+            <Typography>
+              Location data is present but seems to be in an invalid format.
+            </Typography>
           )}
         </ContentColumn>
       </>
@@ -119,7 +118,7 @@ export default function ShowData() {
     <>
       <MainContainer>
         <Title>Meeting Information</Title>
-        <Typography>{renderContent()}</Typography>
+        {renderContent()}
       </MainContainer>
     </>
   )
