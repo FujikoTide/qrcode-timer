@@ -4,11 +4,11 @@ import type { HTMLAttributes, ReactNode } from 'react'
 const gridVariants = cva('grid', {
   variants: {
     cols: {
-      1: 'grid-cols-1',
-      2: 'grid-cols-2',
-      3: 'grid-cols-3',
-      4: 'grid-cols-4',
-      5: 'grid-cols-5',
+      '1': 'grid-cols-1',
+      '2': 'grid-cols-2',
+      '3': 'grid-cols-3',
+      '4': 'grid-cols-4',
+      '5': 'grid-cols-5',
     },
     gap: {
       sm: 'gap-2',
@@ -18,7 +18,7 @@ const gridVariants = cva('grid', {
     },
   },
   defaultVariants: {
-    cols: 1,
+    cols: '1',
     gap: 'md',
   },
 })

@@ -31,7 +31,7 @@ export default function FormDatePicker({
 }: FormDatePickerProps) {
   return (
     <input
-      type="date"
+      type="datetime-local"
       onChange={onChange}
       className={formDatePickerVariants({ className, textColor })}
       {...props}

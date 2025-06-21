@@ -10,9 +10,9 @@ import { APIProvider } from '@vis.gl/react-google-maps'
 
 import './index.css'
 
-import { Root } from './Root'
-import App from './pages/App'
-import ShowData from './pages/ShowData'
+import { Root } from '@/Root'
+import App from '@/pages/App'
+import ShowData from '@/pages/ShowData'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

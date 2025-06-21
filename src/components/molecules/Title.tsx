@@ -1,12 +1,15 @@
 import type { ReactNode } from 'react'
-import Typography from '@/components/atoms/Typography'
+import Typography, {
+  type TypographyVariantProps,
+} from '@/components/atoms/Typography'
 
-interface TitleProps {
+interface TitleProps extends TypographyVariantProps {
   children: ReactNode
+  className?: string
 }
 
 // how to pass class names down to here?
-export default function Title({ children }: TitleProps) {
+export default function Title({ children, className, ...props }: TitleProps) {
   return (
     <Typography
       as="h1"
@@ -14,7 +17,8 @@ export default function Title({ children }: TitleProps) {
       textWeight="bold"
       align="center"
       textCase="capitalize"
-      className="pb-5"
+      className={`pb-5 ${className || ''}`}
+      {...props}
     >
       {children}
     </Typography>

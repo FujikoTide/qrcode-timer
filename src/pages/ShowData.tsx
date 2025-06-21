@@ -4,7 +4,7 @@ import { decodeAndDecompressUrlSafe } from '@/compression'
 import Typography from '@/components/atoms/Typography'
 import MainContainer from '@/components/organisms/MainContainer'
 import Title from '@/components/molecules/Title'
-import LocationDisplayMap from '@/components/molecules/locationDisplayMap'
+import LocationDisplayMap from '@/components/molecules/LocationDisplayMap'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import { type Base64String } from '@/base64'
 
@@ -90,8 +90,7 @@ export default function ShowData() {
         <ContentColumn className="gap-6 border-1 border-orange-400 py-4">
           {decodedData.d && (
             <Typography textSize="xl" align="left" className="pl-4">
-              <strong>Date:</strong>{' '}
-              {new Date(decodedData.d).toLocaleDateString()}
+              <strong>Date:</strong> {new Date(decodedData.d).toUTCString()}
             </Typography>
           )}
           {address && (

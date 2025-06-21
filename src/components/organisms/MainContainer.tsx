@@ -2,7 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { HTMLAttributes, ReactNode } from 'react'
 
 const mainContainerProps = cva(
-  'mx-auto my-10 h-fit rounded-2xl bg-gray-700 px-10 py-5 shadow-[-10px_0_15px_-4px_rgba(0,0,0,0.2),_10px_0_15px_-4px_rgba(0,0,0,0.2)]',
+  'mx-auto my-0 rounded-none md:rounded-2xl md:my-5 lg:my-10 h-fit bg-gray-700 px-10 py-3 md:py-5 md:shadow-[-10px_0_15px_-4px_rgba(0,0,0,0.2),_10px_0_15px_-4px_rgba(0,0,0,0.2)]',
   {
     variants: {
       width: {

@@ -12,12 +12,7 @@ import InputMessage from '@/components/molecules/InputMessage'
 import InputDate from '@/components/molecules/InputDate'
 import InputLocation from '@/components/molecules/InputLocation'
 import Instructions from '@/components/molecules/Instructions'
-
-// interface QRCodeProps {
-//   l: string | undefined
-//   m: string | undefined
-//   d: string | undefined
-// }
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 interface PreparePayloadProps {
   location?: string
@@ -73,13 +68,23 @@ function App() {
     })
   }
 
+  const isDesktop = useMediaQuery('(min-width: 768px)')
+  console.log(isDesktop)
+
   return (
     <>
       <MainContainer width="single">
         <Title>{title}</Title>
-        {Object.entries(dataForQrCode).length === 0 && generatedLink === '' && (
+
+        <Collapsible
+          isOpen={
+            Object.entries(dataForQrCode).length === 0 &&
+            generatedLink === '' &&
+            activeSection === null
+          }
+        >
           <Instructions />
-        )}
+        </Collapsible>
         <Collapsible isOpen={activeSection === 'generatedLink'}>
           <TrueMarqueeBorder speed="normal" borderSize="md" variant="hover">
             <QRCodeDisplay URI={qrCodeValue} />
@@ -108,7 +113,13 @@ function App() {
           />
         </Collapsible>
         <ContentColumn maxWidth="xl" className="my-4">
-          <ButtonGroup direction="col" align="center" gap="md">
+          <ButtonGroup
+            layout={isDesktop ? 'flex' : 'grid'}
+            direction="col"
+            cols="2"
+            align="center"
+            gap="md"
+          >
             <Button
               onClick={() =>
                 toggleSection('message', 'QR Code Timer - Input Message')

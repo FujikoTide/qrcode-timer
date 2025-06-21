@@ -14,9 +14,9 @@ const buttonVariants = cva(
         ghost: 'bg-gray-400',
       } satisfies Record<Intent, string>,
       size: {
-        sm: 'p-4 text-lg',
-        md: 'p-5 text-xl',
-        lg: 'p-5 text-2xl',
+        sm: 'p-2 text-base lg:p-4 lg:text-lg',
+        md: 'p-3 text-lg lg:p-5 lg:text-xl',
+        lg: 'p-4 text-xl lg:p-5 lg:text-2xl',
       } satisfies Record<Size, string>,
       width: {
         fit: 'w-fit',
