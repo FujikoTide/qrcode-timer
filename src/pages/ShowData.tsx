@@ -7,6 +7,7 @@ import Title from '@/components/molecules/Title'
 import LocationDisplayMap from '@/components/molecules/LocationDisplayMap'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import { type Base64String } from '@/base64'
+import CountdownDisplay from '@/components/molecules/CountdownDisplay'
 
 interface DecodedData {
   l?: string
@@ -88,6 +89,7 @@ export default function ShowData() {
       <>
         {locationCoords && <LocationDisplayMap coordinates={locationCoords} />}
         <ContentColumn className="gap-6 border-1 border-orange-400 py-4">
+          {decodedData.d && <CountdownDisplay targetDate={decodedData.d} />}
           {decodedData.d && (
             <Typography textSize="xl" align="left" className="pl-4">
               <strong>Date:</strong> {new Date(decodedData.d).toUTCString()}

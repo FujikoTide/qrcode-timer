@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { InputHTMLAttributes } from 'react'
 
 const formTextInputVariants = cva(
-  'my-4 w-full p-5 outline-0 text-shadow-md text-shadow-neutral-800',
+  'my-2 lg:my-4 w-full p-3 lg:p-5 outline-0 text-shadow-md text-shadow-neutral-800',
   {
     variants: {
       rounded: {
@@ -27,8 +27,8 @@ const formTextInputVariants = cva(
       textSize: {
         sm: 'text-sm',
         md: 'text-base',
-        lg: 'text-lg',
-        xl: 'text-xl',
+        lg: 'text-base lg:text-lg',
+        xl: 'text-lg lg:text-xl',
       },
       textWeight: {
         light: 'font-light',
