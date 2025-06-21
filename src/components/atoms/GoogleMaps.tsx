@@ -66,7 +66,7 @@ const GoogleMapsComponent: React.FC<GoogleMapsComponentProps> = ({
 
   return (
     <div className="flex flex-col items-center border-1 border-orange-400">
-      <ContentColumn className="h-[400px] w-full">
+      <ContentColumn className="h-[300px] w-full lg:h-[400px]">
         <Map
           defaultCenter={initialCoordinates || defaultCenter}
           defaultZoom={10}
@@ -79,7 +79,7 @@ const GoogleMapsComponent: React.FC<GoogleMapsComponentProps> = ({
           {markerPosition && <AdvancedMarker position={markerPosition} />}
         </Map>
       </ContentColumn>
-      <ContentColumn className="w-full py-4 text-center">
+      <ContentColumn className="w-full py-2 text-center lg:py-4">
         {markerPosition && (
           <>
             <Typography>

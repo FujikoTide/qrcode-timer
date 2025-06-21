@@ -15,7 +15,7 @@ export default function LocationDisplayMap({
   coordinates,
 }: LocationDisplayMapProps) {
   return (
-    <ContentColumn className="h-[400px] w-full">
+    <ContentColumn className="h-[300px] w-full lg:h-[400px]">
       <Map
         center={coordinates}
         defaultZoom={14} // Zoom in a bit closer for a specific location

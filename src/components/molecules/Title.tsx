@@ -8,7 +8,6 @@ interface TitleProps extends TypographyVariantProps {
   className?: string
 }
 
-// how to pass class names down to here?
 export default function Title({ children, className, ...props }: TitleProps) {
   return (
     <Typography

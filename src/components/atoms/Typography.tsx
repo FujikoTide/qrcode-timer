@@ -12,8 +12,8 @@ const typographyVariants = cva(
         md: 'text-base',
         lg: 'text-lg',
         xl: 'text-xl',
-        '2xl': 'text-xl md:text-2xl',
-        '3xl': 'text-2xl md:text-3xl',
+        '2xl': 'text-xl lg:text-2xl',
+        '3xl': 'text-2xl lg:text-3xl',
       },
       align: {
         left: 'text-left',
