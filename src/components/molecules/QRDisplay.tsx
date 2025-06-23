@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import QRCode from '@/components/QRCode'
+import QRCode from '@/components/atoms/QRCode'
 import Typography from '@/components/atoms/Typography'
 
 interface QRCodeDisplayProps {
