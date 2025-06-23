@@ -43,9 +43,14 @@ const GoogleMapsComponent: React.FC<GoogleMapsComponentProps> = ({
       } else {
         setAddress('No address found.')
       }
-    } catch (error) {
-      setAddress('Failed to retrieve address.')
-      console.log(`Geocode Error, failed to retrieve address: ${error}`)
+    } catch (e) {
+      if (e instanceof Error) {
+        setAddress('Failed to retrieve address.')
+        console.log(`Geocode Error, failed to retrieve address: ${e.message}`)
+      } else {
+        setAddress('Failed to retrieve address.')
+        console.log(`Geocode Error, failed to retrieve address: ${String(e)}`)
+      }
     }
   }, [])
 

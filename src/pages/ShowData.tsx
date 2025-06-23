@@ -24,7 +24,11 @@ type ShowDataParams = {
   id: Base64String
 }
 
-export default function ShowData() {
+interface ShowDataProps {
+  isMapApiLoaded: boolean
+}
+
+export default function ShowData({ isMapApiLoaded }: ShowDataProps) {
   const { id } = useParams<ShowDataParams>()
   const [decodedData, setDecodedData] = useState<DecodedData | null>(null)
   const [locationCoords, setLocationCoords] = useState<Coordinates | null>(null)
@@ -35,6 +39,7 @@ export default function ShowData() {
   const reverseGeocode = useCallback(async (lat: number, lng: number) => {
     if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
       console.error('Geocoder not available')
+      setAddress('Could not retrieve Address')
       return
     }
     setLoadingAddress(true)
@@ -47,20 +52,26 @@ export default function ShowData() {
         setAddress('No address found for this location.')
       }
     } catch (e) {
-      setAddress(`Could not retrieve address, error: ${e}`)
+      if (e instanceof Error) {
+        setAddress(`Could not retrieve address, error: ${e.message}`)
+        console.error('Geocoding error:', e)
+      } else {
+        setAddress(`Could not retrieve address, unknown error: ${String(e)}`)
+        console.error('Geocoding error (unknown type:', e)
+      }
     } finally {
       setLoadingAddress(false)
     }
   }, [])
 
   useEffect(() => {
-    console.log('Google Maps API:', window.google)
-    console.log('Geocoder:', window.google?.maps?.Geocoder)
-
-    if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
-      setError('Google Maps API is not available. Please try again later.')
+    if (!isMapApiLoaded) {
+      setError('Loading Google Maps API...')
       return
     }
+
+    console.log('Google Maps API:', window.google)
+    console.log('Geocoder:', window.google?.maps?.Geocoder)
 
     if (!id) {
       setError('No data provided in the URL.')
@@ -81,13 +92,38 @@ export default function ShowData() {
             const coords = { lat, lng }
             setLocationCoords({ lat, lng })
             reverseGeocode(coords.lat, coords.lng)
+          } else {
+            setError(
+              'Location data is present but in an invalid numeric format.',
+            )
+            setLocationCoords(null)
           }
+        } else {
+          setError(
+            'Location data is present but seems to be in an invalid format (not lat, lng).',
+          )
+          setLocationCoords(null)
         }
+      } else {
+        setLocationCoords(null)
+        setAddress(null)
       }
+      setError(null)
     } catch (e) {
-      setError(`Failed to decode the data. The link may be corrupted: ${e}`)
+      if (e instanceof Error) {
+        setError(
+          `Failed to decode the data. The link may be corrupted: ${e.message}`,
+        )
+      } else {
+        setError(
+          `Failed to decode the data. The link may be corrupted: ${String(e)}`,
+        )
+      }
+      setDecodedData(null)
+      setLocationCoords(null)
+      setAddress(null)
     }
-  }, [id, reverseGeocode])
+  }, [id, reverseGeocode, isMapApiLoaded])
 
   const renderContent = () => {
     if (error) {
@@ -107,10 +143,12 @@ export default function ShowData() {
               <strong>Date:</strong> {new Date(decodedData.d).toUTCString()}
             </Typography>
           )}
-          {locationCoords && (address || loadingAddress) && (
+          {locationCoords && (
             <Typography textSize="xl" align="left" className="pl-4">
               <strong>Address:</strong>{' '}
-              {loadingAddress ? 'Loading Address...' : address}
+              {loadingAddress
+                ? 'Loading Address...'
+                : address || 'Address not available.'}
             </Typography>
           )}
           {decodedData.m && (
