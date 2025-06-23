@@ -54,6 +54,14 @@ export default function ShowData() {
   }, [])
 
   useEffect(() => {
+    console.log('Google Maps API:', window.google)
+    console.log('Geocoder:', window.google?.maps?.Geocoder)
+
+    if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
+      setError('Google Maps API is not available. Please try again later.')
+      return
+    }
+
     if (!id) {
       setError('No data provided in the URL.')
       return
