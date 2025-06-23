@@ -30,12 +30,14 @@ export default function ShowData() {
   const [locationCoords, setLocationCoords] = useState<Coordinates | null>(null)
   const [address, setAddress] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [loadingAddress, setLoadingAddress] = useState(false)
 
   const reverseGeocode = useCallback(async (lat: number, lng: number) => {
     if (!window.google || !window.google.maps.Geocoder) {
       console.error('Geocoder not available')
       return
     }
+    setLoadingAddress(true)
     const geocoder = new google.maps.Geocoder()
     try {
       const response = await geocoder.geocode({ location: { lat, lng } })
@@ -46,6 +48,8 @@ export default function ShowData() {
       }
     } catch (e) {
       setAddress(`Could not retrieve address, error: ${e}`)
+    } finally {
+      setLoadingAddress(false)
     }
   }, [])
 
@@ -95,9 +99,10 @@ export default function ShowData() {
               <strong>Date:</strong> {new Date(decodedData.d).toUTCString()}
             </Typography>
           )}
-          {address && (
+          {locationCoords && (address || loadingAddress) && (
             <Typography textSize="xl" align="left" className="pl-4">
-              <strong>Address:</strong> {address}
+              <strong>Address:</strong>{' '}
+              {loadingAddress ? 'Loading Address...' : address}
             </Typography>
           )}
           {decodedData.m && (
