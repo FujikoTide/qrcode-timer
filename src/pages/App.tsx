@@ -69,7 +69,6 @@ function App() {
   }
 
   const isDesktop = useMediaQuery('(min-width: 1024px)')
-  console.log(isDesktop)
 
   return (
     <>
