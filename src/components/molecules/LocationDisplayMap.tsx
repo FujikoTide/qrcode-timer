@@ -1,6 +1,7 @@
 // src/components/molecules/LocationDisplayMap.tsx
 import { Map, AdvancedMarker } from '@vis.gl/react-google-maps'
 import ContentColumn from './ContentColumn'
+import Typography from '../atoms/Typography'
 
 interface Coordinates {
   lat: number
@@ -14,6 +15,9 @@ interface LocationDisplayMapProps {
 export default function LocationDisplayMap({
   coordinates,
 }: LocationDisplayMapProps) {
+  if (!window.google || !window.google.maps) {
+    return <Typography>Loading Google Maps API...</Typography>
+  }
   return (
     <ContentColumn className="h-[300px] w-full lg:h-[400px]">
       <Map
