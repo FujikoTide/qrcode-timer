@@ -2,7 +2,8 @@
 [build]
   command = "vite build"
   functions = "netlify/functions"
-  publish = "public"
+  publish = "/public"
+  base= "/"
 
 ## Uncomment to use this redirect for Single Page Applications
 ## Not needed for static site generators.
