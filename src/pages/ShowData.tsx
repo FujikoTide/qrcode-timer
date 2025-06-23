@@ -33,7 +33,7 @@ export default function ShowData() {
   const [loadingAddress, setLoadingAddress] = useState(false)
 
   const reverseGeocode = useCallback(async (lat: number, lng: number) => {
-    if (!window.google || !window.google.maps.Geocoder) {
+    if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
       console.error('Geocoder not available')
       return
     }
