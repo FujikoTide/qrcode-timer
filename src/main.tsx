@@ -1,43 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom'
-import { APIProvider, useApiIsLoaded } from '@vis.gl/react-google-maps'
+import { APIProvider } from '@vis.gl/react-google-maps'
 
 import './index.css'
 
-import { Root } from '@/Root'
-import App from '@/pages/App'
-import ShowData from '@/pages/ShowData'
-import Typography from '@/components/atoms/Typography'
-import Spinner from '@/components/atoms/Spinner'
-
-function AppRoutes() {
-  const isLoaded = useApiIsLoaded()
-
-  if (!isLoaded) {
-    return (
-      <Typography>
-        <Spinner />
-      </Typography>
-    )
-  }
-
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Root />}>
-        <Route index element={<App />} />
-        <Route path=":id" element={<ShowData isMapApiLoaded={isLoaded} />} />
-      </Route>,
-    ),
-  )
-
-  return <RouterProvider router={router} />
-}
+import AppRoutes from '@/components/AppRoutes'
 
 const libraries: ('maps' | 'marker' | 'places' | 'geocoding')[] = [
   'maps',
