@@ -11,6 +11,7 @@ export default function QRCode({ value }: QRCodeValue) {
         value={value}
         className="shadow-md shadow-neutral-600"
         size={256}
+        level="M"
       />
     </div>
   )
