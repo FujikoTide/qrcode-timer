@@ -47,7 +47,7 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
   }
 
   return (
-    <ContentColumn>
+    <>
       <TrueMarqueeBorder speed="normal" borderSize="md" variant="hover">
         <Link
           to={URI}
@@ -63,11 +63,11 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
         onClick={handleDownload}
         intent="warning"
         size="sm"
-        width="fullWidth"
+        width="halfWidth"
         className="mt-2"
       >
         Download QR Code
       </Button>
-    </ContentColumn>
+    </>
   )
 }
