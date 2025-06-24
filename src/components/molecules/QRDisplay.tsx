@@ -31,7 +31,7 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
       to={URI}
       className="block text-center transition-transform duration-200"
     >
-      <QRCode value={URI} />
+      <QRCode value={fullURL} />
       <Typography textSize="md" align="center" className="mt-2">
         {baseURL ? displayURL : 'Generating Link...'}
       </Typography>
