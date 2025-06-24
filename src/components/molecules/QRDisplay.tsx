@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import QRCode from '@/components/atoms/QRCode'
 import Typography from '@/components/atoms/Typography'
 import Button from '@/components/atoms/Button'
-import ContentColumn from './ContentColumn'
 import TrueMarqueeBorder from './TrueMarqueeBorder'
 
 interface QRCodeDisplayProps {
@@ -47,7 +46,7 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
   }
 
   return (
-    <>
+    <div className="text-center">
       <TrueMarqueeBorder speed="normal" borderSize="md" variant="hover">
         <Link
           to={URI}
@@ -59,15 +58,16 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
           </Typography>
         </Link>
       </TrueMarqueeBorder>
-      <Button
-        onClick={handleDownload}
-        intent="warning"
-        size="sm"
-        width="halfWidth"
-        className="mt-2"
-      >
-        Download QR Code
-      </Button>
-    </>
+      <div className="mt-4">
+        <Button
+          onClick={handleDownload}
+          intent="warning"
+          size="sm"
+          width="fullWidth"
+        >
+          Download QR Code
+        </Button>
+      </div>
+    </div>
   )
 }

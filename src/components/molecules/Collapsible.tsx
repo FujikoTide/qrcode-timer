@@ -23,9 +23,9 @@ export default function Collapsible({ isOpen, children }: collapsibleProps) {
     <div
       ref={ref}
       style={{ height }}
-      className="overflow-hidden transition-all duration-300 ease-in-out"
+      className="w-full overflow-hidden transition-all duration-300 ease-in-out"
     >
-      <div className="flex justify-center p-4">{children}</div>
+      <div className="flex justify-center pb-1">{children}</div>
     </div>
   )
 }

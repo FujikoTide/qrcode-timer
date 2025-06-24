@@ -114,37 +114,43 @@ function App() {
             direction="col"
             cols="2"
             align="center"
-            gap="md"
+            gap="sm"
           >
-            <Button
-              onClick={() =>
-                toggleSection('message', 'QR Code Timer - Input Message')
-              }
-              intent="danger"
-              width="fullWidth"
-            >
-              {activeSection === 'message' ? 'Hide Message' : 'Input Message'}
-            </Button>
-            <Button
-              onClick={() =>
-                toggleSection('date', 'QR Code Timer - Input Date')
-              }
-              intent="primary"
-              width="fullWidth"
-            >
-              {activeSection === 'date' ? 'Hide Date' : 'Input Date'}
-            </Button>
-            <Button
-              onClick={() =>
-                toggleSection('location', 'QR Code Timer - Input Location')
-              }
-              intent="secondary"
-              width="fullWidth"
-            >
-              {activeSection === 'location'
-                ? 'Hide Location'
-                : 'Input Location'}
-            </Button>
+            <Collapsible isOpen={activeSection !== 'generatedLink'}>
+              <Button
+                onClick={() =>
+                  toggleSection('message', 'QR Code Timer - Input Message')
+                }
+                intent="danger"
+                width="fullWidth"
+              >
+                {activeSection === 'message' ? 'Hide Message' : 'Input Message'}
+              </Button>
+            </Collapsible>
+            <Collapsible isOpen={activeSection !== 'generatedLink'}>
+              <Button
+                onClick={() =>
+                  toggleSection('date', 'QR Code Timer - Input Date')
+                }
+                intent="primary"
+                width="fullWidth"
+              >
+                {activeSection === 'date' ? 'Hide Date' : 'Input Date'}
+              </Button>
+            </Collapsible>
+            <Collapsible isOpen={activeSection !== 'generatedLink'}>
+              <Button
+                onClick={() =>
+                  toggleSection('location', 'QR Code Timer - Input Location')
+                }
+                intent="secondary"
+                width="fullWidth"
+              >
+                {activeSection === 'location'
+                  ? 'Hide Location'
+                  : 'Input Location'}
+              </Button>
+            </Collapsible>
             <Button
               onClick={handleGenerateQRCode}
               intent="warning"
