@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -12,15 +11,18 @@ import App from '@/pages/App'
 import ShowData from '@/pages/ShowData'
 import ContentColumn from '@/components/molecules/ContentColumn'
 import Spinner from '@/components/atoms/Spinner'
+import MainContainer from './organisms/MainContainer'
 
 export default function AppRoutes() {
   const isLoaded = useApiIsLoaded()
 
   if (!isLoaded) {
     return (
-      <ContentColumn>
-        <Spinner size="lg" />
-      </ContentColumn>
+      <MainContainer>
+        <ContentColumn>
+          <Spinner size="lg" />
+        </ContentColumn>
+      </MainContainer>
     )
   }
 
