@@ -7,7 +7,6 @@ import MainContainer from '@/components/organisms/MainContainer'
 import Collapsible from '@/components/molecules/Collapsible'
 import Button from '@/components/atoms/Button'
 import QRCodeDisplay from '@/components/molecules/QRDisplay'
-import TrueMarqueeBorder from '@/components/molecules/TrueMarqueeBorder'
 import InputMessage from '@/components/molecules/InputMessage'
 import InputDate from '@/components/molecules/InputDate'
 import InputLocation from '@/components/molecules/InputLocation'
@@ -85,9 +84,7 @@ function App() {
           <Instructions />
         </Collapsible>
         <Collapsible isOpen={activeSection === 'generatedLink'}>
-          <TrueMarqueeBorder speed="normal" borderSize="md" variant="hover">
-            <QRCodeDisplay URI={qrCodeValue} />
-          </TrueMarqueeBorder>
+          <QRCodeDisplay URI={qrCodeValue} />
         </Collapsible>
         <Collapsible isOpen={activeSection === 'message'}>
           <InputMessage

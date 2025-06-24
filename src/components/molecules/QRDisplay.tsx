@@ -4,6 +4,7 @@ import QRCode from '@/components/atoms/QRCode'
 import Typography from '@/components/atoms/Typography'
 import Button from '@/components/atoms/Button'
 import ContentColumn from './ContentColumn'
+import TrueMarqueeBorder from './TrueMarqueeBorder'
 
 interface QRCodeDisplayProps {
   URI: string
@@ -47,20 +48,23 @@ export default function QRCodeDisplay({ URI }: QRCodeDisplayProps) {
 
   return (
     <ContentColumn>
-      <Link
-        to={URI}
-        className="block text-center transition-transform duration-200"
-      >
-        <QRCode ref={qrCodeRef} value={fullURL} />
-        <Typography textSize="md" align="center" className="mt-2">
-          {baseURL ? displayURL : 'Generating Link...'}
-        </Typography>
-      </Link>
+      <TrueMarqueeBorder speed="normal" borderSize="md" variant="hover">
+        <Link
+          to={URI}
+          className="block text-center transition-transform duration-200"
+        >
+          <QRCode ref={qrCodeRef} value={fullURL} />
+          <Typography textSize="md" align="center" className="mt-2">
+            {baseURL ? displayURL : 'Generating Link...'}
+          </Typography>
+        </Link>
+      </TrueMarqueeBorder>
       <Button
         onClick={handleDownload}
         intent="warning"
         size="sm"
         width="fullWidth"
+        className="mt-2"
       >
         Download QR Code
       </Button>
